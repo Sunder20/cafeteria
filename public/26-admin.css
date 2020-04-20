@@ -1,0 +1,166 @@
+
+body{
+    font-family: 'Armata';
+    max-width: 400px;
+    margin: 0 auto;
+   /* margin-top: 60px; */
+    background: url(coffee.jpg) no-repeat center left fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+.content1{
+    font-family: 'Armata';
+    max-width: 800px;
+    margin: 0 auto;
+   /* margin-top: 60px; */
+    background: url(coffee.jpg) no-repeat center left fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+.main{
+    margin-left: 3px;
+    background: #f2f5f1;
+    padding-left: 30px;
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
+
+.Menupage-title{
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #453C52;
+}
+
+.Add-Menu{
+    display: flex;
+    height: 32px;
+    align-items: stretch;
+    margin-bottom: 22px;
+}
+
+.AddMenu-txt{
+
+    border-radius: 5px;
+    margin-right: 20px;
+    border: 1px solid #BFB8CC;
+    color: #726A7E;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+
+.AddMenu-button{
+    padding: 7px 22px;
+    background-color: #48BB78;
+    font-size: 14px;
+    color: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #48BB78;
+}
+
+
+.menu_list{
+    text-decoration: none;
+    color: #444;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    border-bottom: 1px dashed #bbb;
+    font-family: 'Atma';
+    padding: 0.175em 0 0.075em 0.5em;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.menu_list:hover {background: rgb(161, 158, 158);}
+
+.zag {
+    background: url(http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/zag@2x.png);
+    background-size: 10px 7px;
+    -webkit-min-device-pixel-ratio: 2;
+    max-width: 397px;
+    width: 100%;
+    top: auto;
+    height: 7px;
+    z-index: 99;
+    position: fixed;
+    margin-left: 3px;
+}
+
+.delete {
+    margin-left: 8px;
+    opacity: 0.3;
+  }
+
+.delete:hover {
+    margin-left: 8px;
+    opacity: 1.0;
+  }
+
+  .MyMenuItem-Container {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 6px;
+    color: #453C52;
+    padding: 1px 6px;
+  }
+
+  .MyMenuItem-Container:hover {
+    background-color: #F1EDF9;
+  }
+
+
+.MyMenuItem {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #453c52;
+  }
+
+  .collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 8px;
+  }
+
+  .active, .collapsible:hover {
+    background-color: #555;
+  }
+
+  .collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+
+  .active:after {
+    content: "\2212";
+  }
+
+  .content{
+    padding: 0 18px;
+    max-height: 10px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }

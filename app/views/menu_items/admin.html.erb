@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript"></script>
+    <title>admin-Twenty & Six Espresso</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="26-admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
+
+</head>
+
+<body class="content1">
+    <main class="main">
+        <h1 class="Menupage-title"><%= @menu.name %></h1>
+        <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post", class: "Add-Menu") do %>
+          <%= text_field_tag 'name', nil, placeholder: "Item", class: "AddMenu-txt" %>
+          <%= text_field_tag 'price', nil, placeholder: "Price", class: "AddMenu-txt" %>
+          <%= text_field_tag 'description', nil, placeholder: "Description", class: "AddMenu-txt" %>
+          <%= button_tag "Add" , class: "AddMenu-button" %>
+        <% end %>
+        <div class="menus">
+           <div style="display: flex;">
+            <p style="margin-right: 10px;">Item id</p>
+            <p style="margin-right: 10px;">Item name</p>
+            <p style="margin-right: 20px;">Price</p>
+            <p>Description</p>
+           </div>
+          <ul>
+           <% @items.all.each do |item|%>
+           <li>
+           <label class='MyMenuItem-Container'>
+            <p style="margin-right: 10px;"><%= item.id %></p>
+            <p style="margin-right: 10px;"><%= item.name %></p>
+            <p style="margin-right: 20px;"><%= item.price %></p>
+            <p><%= item.description %><br/></p>
+            <button class="collapsible">Update</button>
+            <ul class="content">
+              <li>
+              <%= form_with(url: "/menu_items/#{item.id}", method: "put", class: "Add-Menu") do %>
+                <%= text_field_tag 'name', nil, placeholder: "Update Item Name" %>
+                <%= text_field_tag 'price', nil, placeholder: "Update Price" %>
+                <%= text_field_tag 'description', nil, placeholder: "Update Description" %>
+                <%= button_tag "Update" , class: "AddMenu-button" %>
+              <%end%>
+              </li>
+            </ul>
+             <script>
+              var coll = document.getElementsByClassName("collapsible");
+              var i;
+
+              for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                  this.classList.toggle("active");
+                  var content = this.nextElementSibling;
+                  if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                  } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                  }
+                });
+              }
+            </script>
+
+            <a class="delete" href="javascript:void(0)">
+                        <%= form_with(url: "/menu_items/#{item.id}" ,method: "delete") do %>
+                        <input type="image" src="delete-outline.jpg">
+                        <% end %>
+                    </a>
+           </label>
+           </li>
+           <% end %>
+           </ul>
+        </div>
+    </main>
+    <div class="zag slide" style="max-width: 797px;"></div>
+</body>
+
+
+</html>

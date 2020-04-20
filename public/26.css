@@ -1,0 +1,299 @@
+body{
+    background: url(coffee.jpg) no-repeat center left fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+.greenline{
+    /*background: #76d6a3;*/
+    background: gray;
+    height: 8px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.fullwrap{
+    margin: 0 0 0 5%;
+    width: 95%;
+    position: static;
+    box-sizing: border-box;
+}
+
+.container{
+   position: fixed;
+    z-index: 1;
+    width: 200px;
+    zoom: 1;
+  /*  filter: alpha(opacity=9.5);*/
+    opacity: 0.75;
+    height: 100%;
+    padding: 0 16px;
+}
+
+.menus{
+    display: block;
+    position: static;
+    width: 100%;
+    height: 380px;
+    font-size: 0.8em;
+    background: #f2f5f1;
+
+}
+
+/*.menus:after{
+    background: linear-gradient(-45deg, #fff 10px,transparent 0),
+                linear-gradient(45deg, #fff 10px,transparent 0 );
+    background-position: bottom;
+    background-repeat: repeat-x;
+    -webkit-background-size:;
+    background-size: 12px 32px;
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}*/
+
+
+
+.try{
+    text-decoration: none;
+    color: #444;
+}
+
+.try:-webkit-any-link {
+    /*color: -webkit-link;*/
+    cursor: pointer;
+   /* text-decoration: underline;*/
+}
+
+.logo{
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+img{
+    border: 0;
+    vertical-align: middle;
+}
+
+.navi{
+    border-top: 1px dashed #bbb;
+    padding: 0;
+    display: block;
+   /* margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  /*  padding-inline-start: 40px; */
+  margin-bottom: 0;
+}
+
+li{
+    position: relative;
+    list-style: none;
+    text-align: -webkit-match-parent;
+
+}
+
+.try{
+    /*font-family: "Garage Gothic";*/
+    font-family: 'Annie Use Your Telescope';
+    text-transform: uppercase;
+    display: block;
+    padding: 0.175em 0 0.075em 0.5em;
+    color: #444;
+    font-size: 2em;
+    border-bottom: 1px dashed #bbb;
+}
+
+.try:hover{
+    background-color: gray;
+}
+/*.zag{
+    background: url(http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/zag@2x.png);
+    background-size: 10px 7px;
+    width: 200px;
+    top: auto;
+    height: 7px;
+    z-index: 99;
+    position: relative;
+}*/
+
+
+.zag {
+    background: url(http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/zag@2x.png);
+    background-size: 10px 7px;
+    -webkit-min-device-pixel-ratio: 2;
+    width: 200px;
+    top: auto;
+    height: 7px;
+    z-index: 99;
+    position: fixed;
+}
+
+.zig{
+    background: url(http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/zig@2x.png);
+    background-size: 10px 7px;
+    width: 200px;
+    top: auto;
+    bottom: 180px;
+    position: absolute;
+    height: 7px;
+    clear: both;
+}
+.slide{
+    transition: all 0.2s linear;
+    transform: translate3d(0, 0, 0);
+}
+
+.largeprint {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+   /* padding: 7px 12px 50px 10px;*/
+   padding: 0;
+   padding-top: 10px;
+    background: #f2f5f1;
+    width: 200px;
+    height: 180px;
+}
+
+.social{
+    font-size: 2em;
+    width: 100%;
+    padding: 0.5em 0.2em;
+    display: inline-block;
+    color: #bbb;
+    text-align: center;
+    float: right;
+    top: 7px;
+    right: 16px;
+}
+
+.social i {
+    margin: 0 0.1em;
+}
+
+input[type=text], input[type=password] {
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  /* Set a style for all buttons */
+  .button {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: -webkit-match-parent;
+  }
+
+  .button:hover {
+    opacity: 0.8;
+  }
+
+  /* Extra styles for the cancel button */
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+
+  /* Center the image and position the close button */
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+
+  img.avatar {
+    width: 30%;
+    border-radius: 50%;
+  }
+
+  .logincontainer {
+    padding: 30px;
+  }
+
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button (x)
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  */
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
+
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+  }
