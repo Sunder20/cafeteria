@@ -1,4 +1,4 @@
-body{
+.homebody{
   background: url(coffee.jpg) no-repeat center left fixed;
   background-size: cover;
   background-attachment: fixed;
@@ -26,7 +26,7 @@ body{
   box-sizing: border-box;
 }
 
-.container{
+.homecontainer{
  position: fixed;
   z-index: 1;
   width: 200px;
@@ -35,6 +35,7 @@ body{
   opacity: 0.75;
   height: 100%;
   padding: 0 16px;
+  margin-left: -350px;
 }
 
 .menus{
@@ -186,7 +187,11 @@ li{
   margin: 0 0.1em;
 }
 
-input[type=text], input[type=password] {
+
+.login input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 8px;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -229,7 +234,6 @@ img.avatar {
 
 span.psw {
   float: right;
-  padding-top: 16px;
 }
 
 /* The Modal (background) */

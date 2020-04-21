@@ -1,7 +1,7 @@
 
 body{
   font-family: 'Armata';
-  margin: 8px;
+  margin: 0 auto;
  /* margin-top: 60px; */
   background: url(coffee.jpg) no-repeat center left fixed;
   background-size: cover;
@@ -10,6 +10,7 @@ body{
   height: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  max-width: 40%;
 
 }
 
@@ -34,10 +35,11 @@ body{
   padding-left: 30px;
   padding-top: 60px;
   padding-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .Menupage-title{
-  font-size: 20px;
+  font-size: 40px;
   line-height: 1.6;
   font-weight: 600;
   margin-bottom: 12px;
@@ -52,7 +54,6 @@ body{
 }
 
 .AddMenu-txt{
-
   border-radius: 5px;
   margin-right: 20px;
   border: 1px solid #BFB8CC;
@@ -331,7 +332,6 @@ img.avatar {
 
 span.psw {
   float: right;
-  padding-top: 16px;
 }
 
 /* The Modal (background) */
@@ -413,4 +413,23 @@ span.psw {
   color: darkred;
   margin-bottom: 20px;
   font-size: 16px;
+}
+
+
+.delete {
+  margin-left: 8px;
+  opacity: 0.3;
+}
+
+.delete:hover {
+  margin-left: 8px;
+  opacity: 1.0;
+}
+
+.MyMenuItem-Container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  color: #453C52;
+  padding: 1px 6px;
 }
