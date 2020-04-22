@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript"></script>
+    <title>admin-Twenty & Six Espresso</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="26-admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
+
+</head>
+
+<body class="content">
+    <main class="main">
+        <h1class="Menupage-title"><%= @menu.name %></h1>
+            <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post", class: "Add-Menu") do %>
+            <%= text_field_tag 'name', nil, placeholder: "Item", class: "AddMenu-txt" %>
+            <%= text_field_tag 'price', nil, placeholder: "Price", class: "AddMenu-txt" %>
+            <%= text_field_tag 'description', nil, placeholder: "Description", class: "AddMenu-txt" %>
+            <%= button_tag "Add" , class: "AddMenu-button" %>
+            <% end %>
+            <div style="margin-right: 20px;">
+                <table style="width: 100%;" border="0">
+                    <td align="left">
+                        <p>Item id</p>
+                    </td>
+                    <td>
+                        <p>Item name</p>
+                    </td>
+                    <td>
+                        <p> &#x20B9; 8</p>
+                    </td>
+                </table>
+                <p style="word-wrap: break-word;">A paragraph is a series of related sentences developing a central
+                    idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a
+                    sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at
+                    a time to your broader argument.</p>
+                <button type="button" class="collapsible">Update</button>
+                <div class="updatecontent">
+                    <p>trial</p>
+                </div>
+                <table style="width: 100%;" border="0">
+                    <td align="left">
+                        <p>Item id</p>
+                    </td>
+                    <td>
+                        <p>Item name</p>
+                    </td>
+                    <td>
+                        <p> &#x20B9; 8</p>
+                    </td>
+                </table>
+                <p>Description</p>
+            </div>
+    </main>
+    <div class="zag slide" style="max-width: 797px;"></div>
+</body>
+
+</html>

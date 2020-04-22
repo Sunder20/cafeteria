@@ -33,7 +33,7 @@ body{
     zoom: 1;
   /*  filter: alpha(opacity=9.5);*/
     opacity: 0.75;
-    height: 100%;
+    height: 100%;   
     padding: 0 16px;
 }
 
@@ -95,11 +95,11 @@ img{
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-  /*  padding-inline-start: 40px; */
+    padding-inline-start: 40px; */
   margin-bottom: 0;
 }
 
-li{
+.navi li{
     position: relative;
     list-style: none;
     text-align: -webkit-match-parent;
@@ -134,12 +134,14 @@ li{
 .zag {
     background: url(http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/zag@2x.png);
     background-size: 10px 7px;
-    -webkit-min-device-pixel-ratio: 2;
+   /* -webkit-min-device-pixel-ratio: 2;*/
+   max-width: -webkit-fill-available;
     width: 200px;
     top: auto;
     height: 7px;
     z-index: 99;
-    position: fixed;
+    position: relative;
+    
 }
 
 .zig{
@@ -152,6 +154,7 @@ li{
     height: 7px;
     clear: both;
 }
+
 .slide{
     transition: all 0.2s linear;
     transform: translate3d(0, 0, 0);
@@ -174,7 +177,7 @@ li{
     font-size: 2em;
     width: 100%;
     padding: 0.5em 0.2em;
-    display: inline-block;
+    /*display: inline-block;*/
     color: #bbb;
     text-align: center;
     float: right;
@@ -187,12 +190,17 @@ li{
 }
 
 input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
   }
 
   /* Set a style for all buttons */
@@ -202,44 +210,46 @@ input[type=text], input[type=password] {
     width: 100%;
     text-align: -webkit-match-parent;
   }
-
+  
   .button:hover {
     opacity: 0.8;
   }
-
+  
   /* Extra styles for the cancel button */
   .cancelbtn {
     width: auto;
     padding: 10px 18px;
     background-color: #f44336;
+    margin-top: 10px;
   }
-
+  
+  
   /* Center the image and position the close button */
   .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
     position: relative;
   }
-
+  
   img.avatar {
     width: 30%;
     border-radius: 50%;
   }
-
+  
   .logincontainer {
     padding: 30px;
+    border-radius: 5px;
   }
-
+  
   span.psw {
     float: right;
-    padding-top: 16px;
   }
-
+  
   /* The Modal (background) */
   .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
+    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -248,48 +258,55 @@ input[type=text], input[type=password] {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
+    
   }
-
+  
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
+    background: #f2f5f1;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */
   }
-
-  /* The Close Button (x)
+  
+  .signupbtn{
+    width: auto;
+    padding: 10px 18px;
+    background-color: ;
+  }
+  /* The Close Button (x) */
   .close {
     position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
     font-weight: bold;
+    color: #f1f1f1;
   }
-
+  
   .close:hover,
   .close:focus {
-    color: red;
+    color: #f44336;
     cursor: pointer;
   }
-  */
+  
+  
   /* Add Zoom Animation */
   .animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
   }
-
+  
   @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
+    from {-webkit-transform: scale(0)} 
     to {-webkit-transform: scale(1)}
   }
-
+    
   @keyframes animatezoom {
-    from {transform: scale(0)}
+    from {transform: scale(0)} 
     to {transform: scale(1)}
   }
-
+  
   /* Change styles for span and cancel button on extra small screens */
   @media screen and (max-width: 300px) {
     span.psw {
@@ -299,4 +316,136 @@ input[type=text], input[type=password] {
     .cancelbtn {
        width: 100%;
     }
+  }
+
+  @media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+
+  #wrapper{
+      position: relative;
+      height: auto;
+  }
+
+  .content{
+      position: static;
+      margin-left: 300px;
+      margin-bottom: 50px;
+      zoom: 1;
+      opacity: 0.75;
+      width: 520px;
+      max-width: 720px;
+      padding: 0;
+     /* overflow: hidden;*/
+      float: left;
+      box-sizing: border-box;
+      background-clip: padding-box;
+      z-index: 99;
+  }
+
+  .cf:before{
+      content: " ";
+      display: table;
+  }
+
+  .cf:after{
+      clear: both;
+      content: " ";
+      display: table;
+  }
+
+  .content li{
+      margin-top: -15px;
+      list-style: none;
+  }
+
+  .box{
+      margin-bottom: -9px;
+      background: #f2f5f1;
+      padding: 10px 20px 30px 20px;
+  }
+  
+  .box .button{
+    border-radius: 5px;
+  }
+  .heading{
+      margin-top: 30px;
+      padding-bottom: 0;
+      border-bottom: 1px dashed #bbb;
+      text-align: left;
+      font-size: 4em;
+      font-family: 'Monsieur La Doulaise';
+    text-transform: none;
+    display: block;
+    letter-spacing: normal;
+    margin-bottom: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+strong{
+    font-family: "Proxima Nova Bold", georgia, sans-serif;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+.big {
+    display: inline-block;
+    max-width: -webkit-fill-available;
+    width: 100%;
+    top: auto;
+    bottom: auto;
+    position: relative;
+    margin-left: 40px;
+}
+
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: pink;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: rgb(204, 204, 204);
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 20px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  .btn{
+      border-radius: 7px;
+      background-color: inherit;
+      border: none;
+      cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: rgb(133, 240, 133);
   }
