@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :ensure_user_logged_in
-
   def index
-    render "clerk"
+    if @current_user.admin?
+      render "clerk"
+    end
   end
 
   def create
@@ -14,10 +14,14 @@ class UsersController < ApplicationController
     )
     if new_user.save
       flash[:error] = "User Registered. Sign-in to continue"
-      redirect_to root_path
-    else
-      flash[:error] = new_user.errors.full_messages.join(", ")
-      redirect_to root_path
+      redirect_to "/"
     end
+  end
+
+  def destroy
+    id = params[:id]
+    user = User.find(id)
+    user.destroy
+    redirect_to users_path
   end
 end

@@ -1,6 +1,8 @@
-body{
+.body{
   font-family: 'Armata';
-  margin: 0 auto;
+  /*max-width: 400px;*/
+  max-width: 70%;
+ /* margin: 0 auto;*/
  /* margin-top: 60px; */
   background: url(coffee.jpg) no-repeat center left fixed;
   background-size: cover;
@@ -9,15 +11,12 @@ body{
   height: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  max-width: 70%;
 
 }
 
 .content{
   font-family: 'Armata';
-  max-width: 850px;
-  margin: 0 auto;
- /* margin-top: 60px; */
+  max-width: 100%;
   background: url(coffee.jpg) no-repeat center left fixed;
   background-size: cover;
   background-attachment: fixed;
@@ -35,6 +34,7 @@ body{
   padding-top: 60px;
   padding-bottom: 10px;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .Menupage-title{
@@ -50,9 +50,11 @@ body{
   height: 32px;
   align-items: stretch;
   margin-bottom: 22px;
+  margin-right: 10px;
 }
 
 .AddMenu-txt{
+
   border-radius: 5px;
   margin-right: 20px;
   border: 1px solid #BFB8CC;
@@ -85,9 +87,10 @@ body{
   width: 50%;
 }
 
-.menu_list:hover {background: rgb(161, 158, 158);}
+.menu_list:hover {background: rgb(161, 158, 158);
+}
 
-.menuzag {
+.zag {
   background: url(http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/zag@2x.png);
   background-size: 10px 7px;
   -webkit-min-device-pixel-ratio: 2;
@@ -98,12 +101,10 @@ body{
   z-index: 99;
   position: fixed;
   margin-left: 3px;
-
 */
 }
-
 .order-item{
- /* background: #F1EDF7;*/
+  /*background: #F1EDF7;*/
   border-radius: 4px;
   /*width: 190px;*/
   margin-left: 19px;
@@ -134,52 +135,36 @@ body{
 background-color: rgb(133, 240, 133);
 }
 
-
-
-.delete {
-  margin-left: 8px;
-  opacity: 0.3;
-}
-
-.delete:hover {
-  margin-left: 8px;
-  opacity: 1.0;
-}
-
-.MyMenuItem-Container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  color: #453C52;
-  padding: 1px 6px;
-}
-
 .collapsible {
-  /* background-color: #777;*/
-  color: #453C52;
-   cursor: pointer;
-   padding: 18px;
-   /*width: 20%;*/
-   border: none;
-   text-align: left;
-   outline: none;
-   font-size: 20px;
- }
+ /* background-color: #777;*/
+ color: #453C52;
+  cursor: pointer;
+  padding: 18px;
+  /*width: 20%;*/
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+}
 
- .updatecontent {
-   display: none;
-   overflow: hidden;
-   background-color: #f1f1f1;
-   margin-top: 10px;
-   padding: 10px 10px;
-   border-color: plum;
- }
+.updatecontent {
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  margin-top: 10px;
+  /*padding: 10px 10px;*/
+  border-color: plum;
+}
 
- /*.active, .collapsible:hover {
-   background-color: #555;
- }*/
+.pad{
+  padding: 10px 10px;
+}
 
- .navul {
+/*.active, .collapsible:hover {
+  background-color: #555;
+}*/
+
+.navul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -206,4 +191,23 @@ background-color: rgb(133, 240, 133);
 
 .navli .active {
   background-color: gray;
+}
+
+/* in admin page */
+.MyMenuItem-Container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  color: #453C52;
+  padding: 1px 6px;
+}
+
+.delete {
+  margin-left: 8px;
+  opacity: 0.3;
+}
+
+.delete:hover {
+  margin-left: 8px;
+  opacity: 1.0;
 }

@@ -1,6 +1,4 @@
 class MenuItem < ApplicationRecord
-  validates :name, presence: true
-  validates :price, presence: true
   belongs_to :menu
 
   def self.of_menu(menu_id)

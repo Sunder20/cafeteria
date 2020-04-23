@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
-  skip_before_action :ensure_user_logged_in
-
   def index
-    render "admin"
+    if @current_user.admin?
+      render "admin"
+    elsif @current_user.clerk?
+      render "clerk"
+    else
+      @order_items = OrderItem.where(order_id: nil)
+      render "customer"
+    end
   end
 end

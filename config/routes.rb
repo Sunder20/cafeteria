@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :menu_items
   resources :users
   resources :orders
+  resources :order_items
   post "/signin" => "sessions#create", as: :sessions
   delete "/signout" => "sessions#destroy", as: :destroy_session
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

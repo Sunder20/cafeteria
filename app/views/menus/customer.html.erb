@@ -6,7 +6,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="26.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="menu.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Monsieur La Doulaise' rel='stylesheet'>
@@ -23,13 +24,13 @@
                 </a>
                 <ul class="navi">
                     <li>
-                        <a class="try" href="#">News</a>
+                        <a class="try" href="#">Home</a>
                     </li>
                     <li>
-                        <a class="try" href="26-menu.html">Menu</a>
+                        <a class="try" href="26-menu.html">About</a>
                     </li>
                     <li>
-                        <a class="try" href="#">LogIn</a>
+                        <a class="try" href="#">Menu</a>
                     </li>
                     <li>
                         <a class="try" href="#">Get Here</a>
@@ -39,31 +40,40 @@
              <div class="zag slide"></div>
          </div>
          <div id="wrapper" class="slide">
-           <div class="content cf">
+           <div class="content cf" style="width: 520px;">
                 <ol style="margin-bottom: 0;">
                     <li>
                         <article class="box">
                             <h1 class="heading">Eat</h1>
                             <div class="tab">
-                                <button class="tablinks" onclick="openCity(event, 'Coffee')">Coffee</button>
-                                <button class="tablinks" onclick="openCity(event, 'Tea')">Tea</button>
+                                <button class="tablinks" onclick="openCity(event, 'Tea')"><%= Menu.first.name%></button>
                             </div>
+
                             <div id="Tea" class="tabcontent">
+                            <% MenuItem.where(menu_id: Menu.first.id).each do |item| %>
+
                                 <table style="width: 100%;" border="0">
                                     <tbody>
                                         <tr>
                                             <td style="padding-bottom: 10px">
-                                                <strong>Sourdough</strong>
-                                                <button class="btn"><i class="fa fa-plus"></i></button>
-                                                <p style="margin-top: 5px;">description of the material is </p>
+
+                                                <strong><%= item.name %></strong>
+                                                <%= form_with(url: "/order_items?id=#{item.id}", method: "post") do %>
+                                                    <button class="btn"><i class="fa fa-plus"></i></button>
+                                                <% end %>
+                                                <%= form_with(url: "/order_items/#{item.id}", method: "put") do %>
+                                                <button class="btn"><i class="fa fa-minus"></i></button>
+                                                <% end %>
+                                                <p style="margin-top: 5px;"><%= item.description %> </p>
                                             </td>
                                             <td align="right">
-                                                <strong> &#x20B9; 8</strong>
+                                                <strong> &#x20B9; <%= item.price %></strong>
                                             </td>
 
                                         </tr>
                                     </tbody>
                                 </table>
+                            <% end %>
                               </div>
 
                         </article>
@@ -73,21 +83,39 @@
            </div>
          </div>
          <div id="wrapper" class="slide" style="float: right;">
-            <div class="content cf">
+            <div class="content cf" style="width: 520px;">
                  <ol style="margin-bottom: 0;">
                      <li>
                          <article class="box">
-                             <h1 class="heading">Orders</h1>
+                             <h1 class="heading">Cart</h1>
                              <div style="border-bottom: 1px dashed #bbb;">
+                             <% sum = 0 %>
+                                <% @order_items.all.each do |item| %>
                                 <table style="width: 100%;" border="0">
-                                  <td> <strong>Sourdough</strong> </td>
+
+                                  <td> <strong><%= item.menu_item_name %></strong> </td>
                                   <td align="right">
-                                    <strong> &#x20B9; 8</strong>
+                                    <strong> No:  <%= item.quantity %></strong>
                                   </td>
+                                  <td align="right">
+                                    <% price = item.menu_item_price.to_i * item.quantity.to_i %>
+                                    <strong> &#x20B9; <%= price %></strong>
+                                    <% sum = sum + price %>
+                                  </td>
+                                  <td align="right">
+                                  <%= form_with(url: "/order_items/#{item.id}", method: "delete") do %>
+                                    <a class="delete" href="javascript:void(0)">
+                                      <input type="image" src="delete-outline.jpg">
+
+                                    </a>
+                                  <% end %>
+                                  </td>
+
                                 </table>
+                                <% end %>
                              </div>
-                             <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; 8</strong></h4>
-                             <a class="try" href="26-pay.html" style="text-align: center;">Proceed</a>
+                             <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; <%= sum %></strong></h4>
+                             <a class="try" href="/orders" style="text-align: center;">Proceed</a>
                           </article>
                      </li>
                 </ol>

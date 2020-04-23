@@ -7,12 +7,16 @@ class SessionsController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to menus_path
     else
-      flash[:error] = "Your login attempt was invalid. Please Try retry"
+      flash[:error] = "Your login attempt was invalid. Please retry"
       redirect_to root_path
     end
   end
 
   def destroy
+    @current_user = User.find(session[:current_user_id])
+    if @current_user.customer?
+      OrderItem.where(order_id: nil).delete_all
+    end
     session[:current_user_id] = nil
     @current_user = nil
     redirect_to root_path

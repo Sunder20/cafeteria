@@ -9,4 +9,16 @@ class User < ActiveRecord::Base
   def clerk?
     role == "clerk"
   end
+
+  def customer?
+    role == "customer"
+  end
+
+  def self.customer
+    all.where(role: "customer")
+  end
+
+  def self.clerk
+    all.where(role: "clerk")
+  end
 end

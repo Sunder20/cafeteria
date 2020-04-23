@@ -24,15 +24,15 @@ class MenuItemsController < ApplicationController
   def update
     id = params[:id]
     item = MenuItem.find(id)
-    if item.name != params[:name]
+    if item.name != params[:name] && params[:name] != ""
       item.name = params[:name]
     end
 
-    if item.price != params[:price]
+    if item.price != params[:price] && params[:price] != ""
       item.price = params[:price]
     end
 
-    if item.description != params[:description]
+    if item.description != params[:description] && params[:description] != ""
       item.description = params[:description]
     end
 

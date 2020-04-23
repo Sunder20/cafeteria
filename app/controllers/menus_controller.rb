@@ -5,6 +5,7 @@ class MenusController < ApplicationController
     elsif @current_user.clerk?
       render "clerk"
     else
+      @order_items = OrderItem.where(order_id: nil)
       render "customer"
     end
   end
