@@ -35,7 +35,7 @@
             <div class="zag slide"></div>
         </div>
         <div id="wrapper" class="slide">
-          <div class="content cf">
+          <div class="content cf" style = "width: 520px;" >
                <ol style="margin-bottom: 0;">
                    <li>
                        <article class="box">
@@ -55,7 +55,8 @@
                              </table>
                            </div>
                            <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; 8</strong></h4>
-                           <a class="try" href="26-pay.html" style="text-align: center;">Pay Now</a>
+                           <a class="try" href="<%= order_path(id: @order.id) %>" data-method ="put" style="text-align: center;">Pay Now</a>
+
                         </article>
                     </li>
                 </ol>

@@ -1,3 +1,5 @@
+</html>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,14 +24,17 @@
     <li class="navli"><a href="/users">Reports</a></li>
   </ul>
 
-  <main class="main">
-    <h1 class="Menupage-title">Menu 1</h1>
-      <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post", class: "Add-Menu") do %>
-        <%= text_field_tag 'name', nil, placeholder: "Item", class: "AddMenu-txt" , :required => true %>
-        <%= text_field_tag 'price', nil, placeholder: "Price", class: "AddMenu-txt", :required => true %>
-        <%= text_area_tag 'description', nil, placeholder: "Description", class: "AddMenu-txt" %>
-        <%= button_tag "Add" , class: "AddMenu-button" %>
-      <% end %>
-  </main>
+<main class="main">
+
+
+
+<%= form_with(url: "/menu_items/#{@item.id}", method: "put", class: "Add-Menu") do %>
+          <%= text_field_tag 'name', nil, placeholder: "#{@item.name}", class: "AddMenu-txt" %>
+          <%= text_field_tag 'price', nil, placeholder: "#{@item.price}", class: "AddMenu-txt" %>
+          <%= text_field_tag 'description', nil, placeholder: "#{@item.description}", class: "AddMenu-txt" %>
+          <%= button_tag "Update" , class: "AddMenu-button" , style: "background-color: brown; border: 1px solid brown" %>
+<%end%>
+
+</main>
 </body>
 </html>

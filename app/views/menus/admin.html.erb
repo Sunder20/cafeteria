@@ -43,7 +43,11 @@
                             type="checkbox" <%= menu.active ? "checked" : "" %>
                             onclick="this.form.submit()"
                         >
+                      <% if menu.active %>
+                        <p>Active</p>
+                      <% end %>
                     <% end %>
+
             </label>
             </li>
           <% end %>

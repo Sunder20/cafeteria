@@ -26,44 +26,44 @@
 
   <main class="main">
     <h1 class="Menupage-title">Menu 1</h1>
-     <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post", class: "Add-Menu") do %>
-        <%= text_field_tag 'name', nil, placeholder: "Item", class: "AddMenu-txt" , :required => true %>
-        <%= text_field_tag 'price', nil, placeholder: "Price", class: "AddMenu-txt", :required => true %>
-        <%= text_field_tag 'description', nil, placeholder: "Description", class: "AddMenu-txt" %>
-        <%= button_tag "Add" , class: "AddMenu-button" %>
-      <% end %>
+      <!--<%= form_with(url: "/menu_items/new?id=#{@menu.id}", method: "get", class: "Add-Menu") do %>
+        <%= button_tag "Add New Item" , class: "AddMenu-button" %>
+        <%= @menu.id %>
+      <% end %> -->
+      <%= link_to "Add New Item", new_menu_item_path(id: "#{@menu.id}") , :class => "AddMenu-button"%>
     <% @items.all.each do |item|%>
-    <div style="margin-right: 20px;">
-      <table style="width: 100%;" border="0">
-        <td align="left">
-          <p><%= item.id %></p>
-        </td>
+
+      <div style="margin-right: 20px;">
+
+        <table style="width: 100%;" border="0">
         <td>
-          <p><%= item.name %></p>
-        </td>
-        <td>
-          <p> &#x20B9; <%= item.price %></p>
+        <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list" >
+          <table style="width: 100%;" border="0">
+          <td align="left">
+            <p><%= item.id %></p>
+          </td>
+          <td>
+            <p><%= item.name %></p>
+          </td>
+          <td>
+            <p> &#x20B9; <%= item.price %></p>
+          </td>
+          </table>
+        </a>
         </td>
         <td>
           <a class="delete" href="javascript:void(0)">
             <%= form_with(url: "/menu_items/#{item.id}" ,method: "delete") do %>
               <input type="image" src="delete-outline.jpg">
-           <% end %>
+            <% end %>
           </a>
         </td>
-      </table>
-      <p style="word-wrap: break-word;">
-        <%= item.description %>
-      </p>
-      <%= form_with(url: "/menu_items/#{item.id}", method: "put", class: "Add-Menu") do %>
-          <%= text_field_tag 'name', nil, placeholder: "Update Item Name", class: "AddMenu-txt" %>
-          <%= text_field_tag 'price', nil, placeholder: "Update Price", class: "AddMenu-txt" %>
-          <%= text_field_tag 'description', nil, placeholder: "Update Description", class: "AddMenu-txt" %>
-          <%= button_tag "Update" , class: "AddMenu-button" , style: "background-color: brown; border: 1px solid brown" %>
-      <%end%>
+        </table>
+        <p style="word-wrap: break-word;">
+          <%= item.description %>
+        </p>
+      </div>
 
-
-    </div>
     <% end %>
   </main>
   <div class="zag slide"></div>

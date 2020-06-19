@@ -17,4 +17,18 @@ class OrdersController < ApplicationController
     @new_order.save
     redirect_to menus_path
   end
+
+  def update
+    id = params[:id]
+    order = Order.find(id)
+    order.status = "confirmed"
+    order.save
+    flash[:error] = " Order confirmed. Continue shoping "
+    redirect_to menus_path
+  end
+
+  def edit
+    id = params[:id]
+    @order = Order.find(id)
+  end
 end

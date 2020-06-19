@@ -3,7 +3,11 @@ class MenuItemsController < ApplicationController
     id = params[:id]
     @items = MenuItem.of_menu(id)
     @menu = Menu.find(id)
-    render "admin"
+    if @menu.nil?
+      puts "nil"
+    else
+      render "admin"
+    end
   end
 
   def create
@@ -19,6 +23,17 @@ class MenuItemsController < ApplicationController
       flash[:error] = new_menu.errors.full_messages.join(", ")
       redirect_to menu_items_path(:id => new_item.menu_id)
     end
+  end
+
+  def new
+    id = params[:id]
+    if id.nil?
+      puts "nil"
+    else
+      puts id
+    end
+    @menu = Menu.find(id)
+    new_item = MenuItem.new()
   end
 
   def update
@@ -38,6 +53,11 @@ class MenuItemsController < ApplicationController
 
     item.save!
     redirect_to menu_items_path(:id => item.menu_id)
+  end
+
+  def edit
+    id = params[:id]
+    @item = MenuItem.find(id)
   end
 
   def destroy
