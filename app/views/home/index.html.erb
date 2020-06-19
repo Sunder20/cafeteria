@@ -28,7 +28,7 @@
                 </a>
                 <ul class="navi">
                     <li>
-                        <a class="try" href="#">Home</a>
+                        <a class="try" href="/menus">Home</a>
                     </li>
                     <li>
                         <a class="try" href="#">News</a>
@@ -48,7 +48,7 @@
                     <button class="try button" onclick="document.getElementById('id01').style.display='block'">Login</button>
                 </li>
                 <li>
-                    <a class="try" href="#">Retailer</a>
+                    <a class="try" href="#">About</a>
                 </li>
                 <ul class="social cf">
 			    	<i class="fa fa-facebook" style=" float: left; margin-left: 20px;"><a href="https://www.facebook.com/pages/Twenty-Six-Espresso/256929470997324"></a></i>
@@ -143,6 +143,22 @@ window.onclick = function(event) {
         modal.style.display = "none";
       }
     }
+  </script>
+
+   <script>
+    var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+      if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+      }
+      else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
   </script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_180100) do
+ActiveRecord::Schema.define(version: 2020_06_19_082301) do
 
   create_table "menu_items", force: :cascade do |t|
     t.integer "menu_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_180100) do
 
   create_table "menus", force: :cascade do |t|
     t.text "name"
+    t.boolean "active"
   end
 
   create_table "order_items", force: :cascade do |t|

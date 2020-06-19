@@ -24,13 +24,13 @@
                 </a>
                 <ul class="navi">
                     <li>
-                        <a class="try" href="#">Home</a>
+                        <a class="try" href="/">Home</a>
                     </li>
                     <li>
-                        <a class="try" href="26-menu.html">About</a>
+                        <a class="try" href="#">About</a>
                     </li>
                     <li>
-                        <a class="try" href="#">Menu</a>
+                        <a class="try" href="/menus">Menu</a>
                     </li>
                     <li>
                         <a class="try" href="#">Get Here</a>
@@ -49,7 +49,7 @@
                                 <button class="tablinks" onclick="openCity(event, 'Tea')"><%= Menu.first.name%></button>
                             </div>
 
-                            <div id="Tea" class="tabcontent">
+
                             <% MenuItem.where(menu_id: Menu.first.id).each do |item| %>
 
                                 <table style="width: 100%;" border="0">
@@ -58,7 +58,7 @@
                                             <td style="padding-bottom: 10px">
 
                                                 <strong><%= item.name %></strong>
-                                                <%= form_with(url: "/order_items?id=#{item.id}", method: "post") do %>
+                                                <%= form_with(url: "/order_items?id=#{item.id}&order_id=#{@order.id}", method: "post") do %>
                                                     <button class="btn"><i class="fa fa-plus"></i></button>
                                                 <% end %>
                                                 <%= form_with(url: "/order_items/#{item.id}", method: "put") do %>
@@ -74,7 +74,7 @@
                                     </tbody>
                                 </table>
                             <% end %>
-                              </div>
+
 
                         </article>
                     </li>
@@ -90,7 +90,7 @@
                              <h1 class="heading">Cart</h1>
                              <div style="border-bottom: 1px dashed #bbb;">
                              <% sum = 0 %>
-                                <% @order_items.all.each do |item| %>
+                                <% @orderitems.all.each do |item| %>
                                 <table style="width: 100%;" border="0">
 
                                   <td> <strong><%= item.menu_item_name %></strong> </td>
@@ -115,7 +115,7 @@
                                 <% end %>
                              </div>
                              <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; <%= sum %></strong></h4>
-                             <a class="try" href="/orders" style="text-align: center;">Proceed</a>
+                             <a class="try" href="/menus" style="text-align: center;">Proceed</a>
                           </article>
                      </li>
                 </ol>

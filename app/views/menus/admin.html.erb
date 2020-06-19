@@ -35,9 +35,16 @@
                 <%= link_to "#{menu.name}", menu_items_path(id: "#{menu.id}") , :class => "menu_list"%>
                 <a class="delete" href="javascript:void(0)">
                   <%= form_with(url: "/menus/#{menu.id}" ,method: "delete") do %>
-                  <input type="image" src="delete-outline.jpg">
-                 <% end %>
+                    <input type="image" src="delete-outline.jpg">
+                  <% end %>
                 </a>
+                <%= form_with(url: "/menus/#{menu.id}" ,method: "put") do %>
+                        <input
+                            name="active"
+                            type="checkbox" <%= menu.active ? "checked" : "" %>
+                            onclick="this.form.submit()"
+                        >
+                    <% end %>
             </label>
             </li>
           <% end %>

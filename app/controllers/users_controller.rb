@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  skip_before_action :ensure_user_logged_in
+
   def index
+    @current_user = User.find(session[:current_user_id])
     if @current_user.admin?
       render "clerk"
     end
@@ -13,7 +16,10 @@ class UsersController < ApplicationController
       role: params[:role],
     )
     if new_user.save
-      flash[:error] = "User Registered. Sign-in to continue"
+      flash[:error] = "User Registered. Log-in to continue"
+      redirect_to "/"
+    else
+      flash[:error] = new_user.errors.full_messages.join(", ")
       redirect_to "/"
     end
   end

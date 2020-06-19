@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   def create
     id = params[:id]
+    order_id = params[:order_id]
     if OrderItem.find_by(menu_item_id: id)
       order_item = OrderItem.find_by(menu_item_id: id)
       order_item.quantity = order_item.quantity + 1
@@ -9,6 +10,7 @@ class OrderItemsController < ApplicationController
     else
       item = MenuItem.find(params[:id])
       OrderItem.create!(
+        order_id: order_id,
         menu_item_name: item.name,
         menu_item_price: item.price,
         menu_item_description: item.description,
