@@ -45,7 +45,7 @@ class MenusController < ApplicationController
       menu1.save
       redirect_to menus_path
     else
-      flash[:error] = "No active menu selected"
+      flash[:error] = "There must be atleast one active menu"
       redirect_to menus_path
     end
   end
@@ -53,7 +53,15 @@ class MenusController < ApplicationController
   def destroy
     id = params[:id]
     menu = Menu.find(id)
+    if menu.active
+      menu1 = Menu.where(active: false).first
+      unless menu1.nil?
+        menu1.active = true
+        menu1.save
+      end
+    end
     menu.destroy
+    flash[:error] = "Please add a menu"
     redirect_to menus_path
   end
 end
