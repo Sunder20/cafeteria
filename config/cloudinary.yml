@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: doyafsvaq
+  api_key: '592295315641689'
+  api_secret: b9iulmFOy7tUlRXVsIkRyKocsHI
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: doyafsvaq
+  api_key: '592295315641689'
+  api_secret: b9iulmFOy7tUlRXVsIkRyKocsHI
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: doyafsvaq
+  api_key: '592295315641689'
+  api_secret: b9iulmFOy7tUlRXVsIkRyKocsHI
+  enhance_image_tag: true
+  static_file_support: false

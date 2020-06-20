@@ -17,11 +17,11 @@
   <link rel="stylesheet" type="text/css" href="menu.css">
 </head>
 
-<body class="content" style="opacity: 0.95;">
+<body class="content" style="opacity: 0.95;width: 50%;">
   <ul class="navul" style="padding-top: 10px">
     <li class="navli"><a class="active" href="/menus">Menu</a></li>
     <li class="navli"><a href="/users">Users</a></li>
-    <li class="navli"><a href="/users">Reports</a></li>
+    <li class="navli"><a href="/orders">Reports</a></li>
   </ul>
 
   <main class="main">
@@ -30,18 +30,19 @@
         <%= button_tag "Add New Item" , class: "AddMenu-button" %>
         <%= @menu.id %>
       <% end %> -->
-      <%= link_to "Add New Item", new_menu_item_path(id: "#{@menu.id}") , :class => "AddMenu-button"%>
+      <%= link_to "Add New Item", new_menu_item_path(id: "#{@menu.id}") , :class => "AddMenu-button" %>
     <% @items.all.each do |item|%>
 
-      <div style="margin-right: 20px;">
-
+      <div style="margin-right: 20px; margin-top: 50px; ">
+      <table style="width: 100%;">
+      <td align="left">
+       <img src="<%=item.image_id %>" >
+      </td>
+      <td align="center">
         <table style="width: 100%;" border="0">
         <td>
-        <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list" >
+        <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list", style="width: 100%;">
           <table style="width: 100%;" border="0">
-          <td align="left">
-            <p><%= item.id %></p>
-          </td>
           <td>
             <p><%= item.name %></p>
           </td>
@@ -62,6 +63,9 @@
         <p style="word-wrap: break-word;">
           <%= item.description %>
         </p>
+      </td>
+
+      </table>
       </div>
 
     <% end %>

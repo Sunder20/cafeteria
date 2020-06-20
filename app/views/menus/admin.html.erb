@@ -18,7 +18,7 @@
     <ul class="navul">
         <li class="navli"><a class="active" href="/menus">Menu</a></li>
         <li class="navli"><a href="/users">Users</a></li>
-        <li class="navli"><a href="/users">Reports</a></li>
+        <li class="navli"><a href="/orders">Reports</a></li>
       </ul>
     <main class="main">
         <h1 class="Menupage-title">MENUS</h1>
@@ -38,14 +38,16 @@
                   <% end %>
                 </a>
                 <%= form_with(url: "/menus/#{menu.id}" ,method: "put") do %>
+                <div style="display: flex; margin-left: 60px;">
                         <input
                             name="active"
                             type="checkbox" <%= menu.active ? "checked" : "" %>
                             onclick="this.form.submit()"
                         >
                       <% if menu.active %>
-                        <p>Active</p>
+                        <h4>Active</h4>
                       <% end %>
+                      </div>
                     <% end %>
 
             </label>

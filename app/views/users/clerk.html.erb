@@ -24,21 +24,23 @@
 <body style="width: 50%;">
     <ul class="navul">
         <li class="navli"><a  href="/menus">Menu</a></li>
-        <li class="navli"><a href="/orders">Orders</a></li>
         <li class="navli"><a class="active" href="/users">Users</a></li>
         <li class="navli"><a href="/orders">Reports</a></li>
       </ul>
     <main class="main">
         <h1 type="button" class="collapsible" style="font-family: 'Armata'">Clerks</h1>
-        <div class="updatecontent pad">
 
 
-        <a onclick="document.getElementById('id02').style.display='block'" style="cursor: pointer;color:dodgerblue; ">Add new Clerk </a>
+
+
 
         <div class="menus">
         <% User.clerk.each do |clerk| %>
         <div style="display: flex;">
           <p class="menu_list"><%= clerk.name %></p>
+          <p class="menu_list"><%= clerk.email %></p>
+          <%= link_to "Remove Clerk" , user_path(id: clerk.id) , method: :put , :class => "menu_list"%>
+
           <%= form_with(url: "/users/#{clerk.id}" ,method: "delete") do %>
             <button class="btn"><i class="fa fa-trash"></i></button>
           <% end %>
@@ -46,9 +48,9 @@
         <% end %>
         </div>
 
-        </div>
+
         <h1 type="button" class="collapsible" style=" font-family: 'Armata'">Customers</h1>
-        <div class="updatecontent pad">
+
 
 
             <div class="menus">
@@ -56,14 +58,14 @@
                 <div style="display: flex;">
                     <p class="menu_list"><%= customer.name %></p>
                     <p class="menu_list"><%= customer.email %></p>
-                    <p class="menu_list">View Orders</p>
+                    <%= link_to "Make Clerk" , user_path(id: customer.id) , method: :put , :class => "menu_list"%>
                     <%= form_with(url: "/users/#{customer.id}" ,method: "delete") do %>
                       <button class="btn"><i class="fa fa-trash"></i></button>
                     <% end %>
                 </div>
                 <% end %>
             </div>
-            </div>
+
     </main>
     <div class="zag slide"></div>
     <div id="id02" class="modal">

@@ -3,7 +3,7 @@ class MenusController < ApplicationController
     if @current_user.admin?
       render "admin"
     elsif @current_user.clerk?
-      render "clerk"
+      redirect_to orders_path
     else
       @order = Order.where(user_id: @current_user.id, status: "pending").first
       if @order.nil?

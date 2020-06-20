@@ -24,6 +24,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    id = params[:id]
+    user = User.find(id)
+    if user.clerk?
+      user.role = "customer"
+    elsif user.customer?
+      user.role = "clerk"
+    end
+    user.save
+    redirect_to users_path
+  end
+
   def destroy
     id = params[:id]
     user = User.find(id)

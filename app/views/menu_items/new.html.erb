@@ -28,6 +28,7 @@
         <%= text_field_tag 'name', nil, placeholder: "Item", class: "AddMenu-txt" , :required => true %>
         <%= text_field_tag 'price', nil, placeholder: "Price", class: "AddMenu-txt", :required => true %>
         <%= text_area_tag 'description', nil, placeholder: "Description", class: "AddMenu-txt" %>
+        <%= text_field_tag 'image_id', nil, placeholder: 'Image URL', class: "AddMenu-txt" %>
         <%= button_tag "Add" , class: "AddMenu-button" %>
       <% end %>
   </main>

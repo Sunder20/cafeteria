@@ -16,6 +16,7 @@ class MenuItemsController < ApplicationController
       price: params[:price],
       description: params[:description],
       menu_id: params[:id],
+      image_id: params[:image_id],
     )
     if new_item.save
       redirect_to menu_items_path(:id => new_item.menu_id)
@@ -27,11 +28,6 @@ class MenuItemsController < ApplicationController
 
   def new
     id = params[:id]
-    if id.nil?
-      puts "nil"
-    else
-      puts id
-    end
     @menu = Menu.find(id)
     new_item = MenuItem.new()
   end
@@ -49,6 +45,10 @@ class MenuItemsController < ApplicationController
 
     if item.description != params[:description] && params[:description] != ""
       item.description = params[:description]
+    end
+
+    if item.image_id != params[:image_id] && params[:image_id] != ""
+      item.image_id = params[:image_id]
     end
 
     item.save!

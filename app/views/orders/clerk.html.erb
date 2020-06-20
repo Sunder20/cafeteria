@@ -18,56 +18,36 @@
 
 <body style="width: 50%;">
     <ul class="navul">
-        <li class="navli"><a href="/menus">Menu</a></li>
-        <li class="navli"><a class="active" href="/orders">Orders</a></li>
-        <li class="navli"><a href="/users">Users</a></li>
-        <li class="navli"><a href="/users">Reports</a></li>
+
+        <li class="navli"><a class="active" href="/orders ">Pending Orders</a></li>
+        <li class="navli"><a href="/users">Walk-in</a></li>
+
       </ul>
     <main class="main">
-        <h1 class="Menupage-title">Orders</h1>
+        <h1 class="Menupage-title">Pending Orders</h1>
         <div class="menus">
           <div class="order-item">
+          <ul>
+          <% Order.pending.all.each do |order|%>
+            <li>
+            <label class='MyMenuItem-Container'>
+              <%= link_to "#{order.id}     #{User.find(order.user_id).name}", order_path(id: "#{order.id}") , :class => "menu_list"%>
+              <%= form_with(url: "/orders/#{order.id}" ,method: "put") do %>
+                <div style="display: flex; margin-left: 60px;">
+                  <input
+                      name="status"
+                      type="checkbox" <%= order.delivered? ? "checked" : "" %>
+                      onclick="this.form.submit()"
+                  >
+                </div>
+              <% end %>
+            </label>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
-                <input class="TodoItem-checkbox" type="checkbox" style="margin-top: 20px;">
-                <a class="collapsible">Menu 1</a>
-
-                <div class="updatecontent pad">
-                    <table style="width: 50%;" border="0">
-                        <tbody>
-                            <tr>
-                                <td style="padding-bottom: 10px">
-                                    <strong>Sourdough</strong>
-                                </td>
-                                <td align="right">
-                                    <strong> &#x20B9; 8</strong>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; 8</strong></h4>
-                   </div>
-          </div>
-
-
-        </div>
-        <script>
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
-
-            for (i = 0; i < coll.length; i++) {
-              coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                  content.style.display = "none";
-                } else {
-                  content.style.display = "block";
-                }
-              });
-            }
-            </script>
-
-    </main>
     <div class="zag slide"></div>
 
 </body>

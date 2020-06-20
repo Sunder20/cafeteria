@@ -47,7 +47,7 @@
                             <h1 class="heading">Eat</h1>
 
 
-                            <% MenuItem.where(menu_id: Menu.first.id).each do |item| %>
+                            <% MenuItem.where(menu_id: Menu.active.id).each do |item| %>
 
                                 <table style="width: 100%;" border="0">
                                     <tbody>
@@ -57,10 +57,11 @@
                                                 <div>
                                                 <div style="display: flex;">
                                                 <strong><%= item.name %></strong>
-                                                <%= form_with(url: "/order_items?id=#{item.id}&order_id=#{@order.id}", method: "post") do %>
+                                                <%= form_with(url: "/order_items?id=#{item.id}&order_id=#{@order.id}" , method: "post") do %>
+
                                                     <button class="btn" style="margin-top: 10px"><i class="fa fa-plus"></i></button>
                                                 <% end %>
-                                                <%= form_with(url: "/order_items/#{item.id}", method: "put") do %>
+                                                <%= form_with(url: "/order_items/#{item.id}?order_id=#{@order.id}", method: "put") do %>
                                                 <button class="btn" style="margin-top: 10px"><i class="fa fa-minus"></i></button>
                                                 <% end %>
                                                 </div>
