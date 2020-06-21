@@ -32,6 +32,8 @@
   <% end %>
 
 <ul style="list-style-type: none;">
+<%= label_tag "Count"%>
+<%= @order.count %>
   <% @order.each do |order|%>
             <li>
             <label class='MyMenuItem-Container'>
@@ -56,8 +58,7 @@
             </label>
             </li>
 <% end%>
-<%= label_tag "Count"%>
-<%= @order.count %>
+
 
 </ul>
 </main>

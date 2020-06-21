@@ -6,17 +6,18 @@ class OrdersController < ApplicationController
       email = params[:email]
       user = User.find_by(email: email)
       if @from.nil?
-        @from = DateTime.now.to_date
-        @to = DateTime.now.to_date + 1
+        @from = (DateTime.now.to_date).to_s
+        @to = (DateTime.now.to_date + 1).to_s
       end
+      till = (DateTime.parse(@to).to_date + 1).to_s
       if user.nil?
         puts @from
-        @order = Order.where(updated_at: @from..@to).reverse
+        @order = Order.where(updated_at: @from..till)
         puts @to.class
       else
-        @order = Order.where(updated_at: @from..@to, user_id: user.id).reverse
+        @order = Order.where(updated_at: @from..till, user_id: user.id)
       end
-
+      @order = @order.order("updated_at DESC")
       render "admin"
     elsif @current_user.clerk?
       render "clerk"
@@ -41,6 +42,7 @@ class OrdersController < ApplicationController
     end
     @new_order.status = "pending"
     @new_order.save
+    puts @new_order.user_id
     if @current_user.customer?
       redirect_to menus_path
     elsif @current_user.clerk?
@@ -51,7 +53,7 @@ class OrdersController < ApplicationController
   def update
     id = params[:id]
     order = Order.find(id)
-    if order.user_id = 2
+    if order.user_id == 2
       if params[:walkin]
         order.status = params[:status]
         order.save

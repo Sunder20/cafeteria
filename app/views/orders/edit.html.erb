@@ -71,8 +71,8 @@
                                 </tbody>
                              </table>
                            </div>
-                           <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; 8</strong></h4>
-                           <a class="try" href="<%= order_path(id: @order.id) %>" data-method ="put" style="text-align: center;">Pay Now</a>
+                           <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9;  <%= sum %></strong></h4>
+                           <%= link_to "Pay Now" , "/orders/#{@order.id}" , method: :put, :class => "try", :style => "text-align: center;" %>
 
                         </article>
                     </li>
