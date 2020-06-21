@@ -3,7 +3,17 @@ class MenusController < ApplicationController
     if @current_user.admin?
       render "admin"
     elsif @current_user.clerk?
-      redirect_to orders_path
+      if params[:walkin]
+        @order = Order.where(user_id: 2, status: "pending").first
+        if @order.nil?
+          redirect_to new_order_path
+        else
+          @orderitems = OrderItem.where(order_id: @order.id).all
+          render "customer"
+        end
+      else
+        redirect_to orders_path
+      end
     else
       @order = Order.where(user_id: @current_user.id, status: "pending").first
       if @order.nil?

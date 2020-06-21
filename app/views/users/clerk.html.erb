@@ -39,7 +39,8 @@
         <div style="display: flex;">
           <p class="menu_list"><%= clerk.name %></p>
           <p class="menu_list"><%= clerk.email %></p>
-          <%= link_to "Remove Clerk" , user_path(id: clerk.id) , method: :put , :class => "menu_list"%>
+
+          <%= link_to "Remove Clerk" , user_path(id: clerk.id) , method: :put , :class => "menu_list", :style => 'margin-top: 25px;'%>
 
           <%= form_with(url: "/users/#{clerk.id}" ,method: "delete") do %>
             <button class="btn"><i class="fa fa-trash"></i></button>
@@ -58,7 +59,7 @@
                 <div style="display: flex;">
                     <p class="menu_list"><%= customer.name %></p>
                     <p class="menu_list"><%= customer.email %></p>
-                    <%= link_to "Make Clerk" , user_path(id: customer.id) , method: :put , :class => "menu_list"%>
+                    <%= link_to "Make Clerk" , user_path(id: customer.id) , method: :put , :class => "menu_list", :style => 'margin-top: 25px;' %>
                     <%= form_with(url: "/users/#{customer.id}" ,method: "delete") do %>
                       <button class="btn"><i class="fa fa-trash"></i></button>
                     <% end %>

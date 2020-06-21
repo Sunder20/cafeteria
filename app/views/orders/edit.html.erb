@@ -21,13 +21,18 @@
                    <img class="logo side" src="http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/logo@2x.png">
                </a>
                <ul class="navi">
-                   <li>
-                       <a class="try" href="26.html">Home</a>
-                   </li>
-                   <li>
-                       <a class="try" href="26-menu.html">Menu</a>
-                   </li>
-                   <li>
+                  <li>
+                    <a class="try" href="/menus">Home</a>
+                  </li>
+                  <% if @current_user.customer?%>
+                    <li>
+                      <a class="try" href="/menus">Menu</a>
+                    </li>
+                  <% elsif @current_user.clerk?%>
+                    <li>
+                      <a class="try" href="/menus?walkin=true">Menu</a>
+                    </li>
+                  <% end %>
                        <a class="try" href="#">Get Here</a>
                    </li>
                </ul>
@@ -44,12 +49,24 @@
                              <table style="width: 100%;" border="0">
                                 <tbody>
                                     <tr>
-                                        <td style="padding-bottom: 10px">
-                                            <strong>Sourdough</strong>
-                                        </td>
-                                        <td align="right">
-                                            <strong> &#x20B9; 8</strong>
-                                        </td>
+                                        <% sum = 0 %>
+                                <% @orderitems.all.each do |item| %>
+                                <table style="width: 100%;" border="0">
+
+                                  <td> <strong><%= item.menu_item_name %></strong> </td>
+                                  <td align="right">
+                                    <strong> No:  <%= item.quantity %></strong>
+                                  </td>
+                                  <td align="right">
+                                    <% price = item.menu_item_price.to_i * item.quantity.to_i %>
+                                    <strong> &#x20B9; <%= price %></strong>
+                                    <% sum = sum + price %>
+                                  </td>
+
+                                </table>
+                                <% end %>
+
+
                                     </tr>
                                 </tbody>
                              </table>

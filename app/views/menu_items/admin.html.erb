@@ -34,38 +34,37 @@
     <% @items.all.each do |item|%>
 
       <div style="margin-right: 20px; margin-top: 50px; ">
-      <table style="width: 100%;">
-      <td align="left">
-       <img src="<%=item.image_id %>" >
-      </td>
-      <td align="center">
-        <table style="width: 100%;" border="0">
-        <td>
-        <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list", style="width: 100%;">
-          <table style="width: 100%;" border="0">
-          <td>
-            <p><%= item.name %></p>
+        <table style="width: 100%;">
+          <td align="center">
+            <table style="width: 100%;" border="0">
+              <td>
+                <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list", style="width: 100%;">
+                  <table style="width: 100%;" border="0">
+                    <td>
+                      <p><%= item.name %></p>
+                    </td>
+                    <td>
+                      <p> &#x20B9; <%= item.price %></p>
+                    </td>
+                  </table>
+                </a>
+              </td>
+              <td>
+                <a class="delete" href="javascript:void(0)">
+                  <%= form_with(url: "/menu_items/#{item.id}" ,method: "delete") do %>
+                    <input type="image" src="delete-outline.jpg">
+                  <% end %>
+                </a>
+              </td>
+            </table>
+            <p style="word-wrap: break-word;">
+              <%= item.description %>
+            </p>
           </td>
-          <td>
-            <p> &#x20B9; <%= item.price %></p>
+          <td align="center">
+            <img src="<%=item.image_id %>" width="50%" height="50%" >
           </td>
-          </table>
-        </a>
-        </td>
-        <td>
-          <a class="delete" href="javascript:void(0)">
-            <%= form_with(url: "/menu_items/#{item.id}" ,method: "delete") do %>
-              <input type="image" src="delete-outline.jpg">
-            <% end %>
-          </a>
-        </td>
         </table>
-        <p style="word-wrap: break-word;">
-          <%= item.description %>
-        </p>
-      </td>
-
-      </table>
       </div>
 
     <% end %>

@@ -19,16 +19,28 @@
   <ul class="navul" style="padding-top: 10px">
     <li class="navli"><a class="active" href="/menus">Menu</a></li>
     <li class="navli"><a href="/users">Users</a></li>
-    <li class="navli"><a href="/users">Reports</a></li>
+    <li class="navli"><a href="/orders">Reports</a></li>
   </ul>
 
   <main class="main">
     <h1 class="Menupage-title">Menu 1</h1>
-      <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post", class: "Add-Menu") do %>
-        <%= text_field_tag 'name', nil, placeholder: "Item", class: "AddMenu-txt" , :required => true %>
-        <%= text_field_tag 'price', nil, placeholder: "Price", class: "AddMenu-txt", :required => true %>
-        <%= text_area_tag 'description', nil, placeholder: "Description", class: "AddMenu-txt" %>
-        <%= text_field_tag 'image_id', nil, placeholder: 'Image URL', class: "AddMenu-txt" %>
+      <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post") do %>
+        <div style="display: flex;">
+          <p>Name:</p>
+          <%= text_field_tag 'name', nil, placeholder: "Enter Name", class: "AddMenu-txt", style: "width: 50%; margin-left: 70px;" %>
+        </div>
+        <div style="display: flex;">
+          <p>Price:</p>
+          <%= text_field_tag 'price', nil, placeholder: "Enter Price", class: "AddMenu-txt", style: "width: 50%; margin-left: 75px;" %>
+        </div>
+        <div style="display: flex;">
+          <p>Description:</p>
+          <%= text_area_tag 'description', nil, rows: 10 ,cols: 50, placeholder: "Enter Description", class: "AddMenu-txt", style: "margin-top: 10px; margin-left: 20px;" %>
+        </div>
+        <div style="display: flex;">
+          <p>Image:</p>
+          <%= text_field_tag 'image_id', nil, placeholder: 'Enter Image URL', class: "AddMenu-txt", style: "width: 50%;margin-left: 62px;" %>
+        </div>
         <%= button_tag "Add" , class: "AddMenu-button" %>
       <% end %>
   </main>

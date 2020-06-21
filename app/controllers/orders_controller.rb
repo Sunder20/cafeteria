@@ -1,13 +1,20 @@
 class OrdersController < ApplicationController
   def index
     if @current_user.admin?
-      from = params[:from_date]
-      to = params[:end_date]
+      @from = params[:from_date]
+      @to = params[:end_date]
       email = params[:email]
-      unless from.nil?
-        @order = Order.delivered.where("updated_at.to_date >= ? AND updated_at.to_date <= ?", from, to).reverse
+      user = User.find_by(email: email)
+      if @from.nil?
+        @from = DateTime.now.to_date
+        @to = DateTime.now.to_date + 1
+      end
+      if user.nil?
+        puts @from
+        @order = Order.where(updated_at: @from..@to).reverse
+        puts @to.class
       else
-        @order = Order.all
+        @order = Order.where(updated_at: @from..@to, user_id: user.id).reverse
       end
 
       render "admin"
@@ -22,37 +29,71 @@ class OrdersController < ApplicationController
   def show
     id = params[:id]
     @order = Order.find(id)
+    @orderitems = OrderItem.where(order_id: @order.id).all
   end
 
   def new
     @new_order = Order.new()
-    @new_order.user_id = @current_user.id
+    if @current_user.customer?
+      @new_order.user_id = @current_user.id
+    elsif @current_user.clerk?
+      @new_order.user_id = 2
+    end
     @new_order.status = "pending"
     @new_order.save
-    redirect_to menus_path
+    if @current_user.customer?
+      redirect_to menus_path
+    elsif @current_user.clerk?
+      redirect_to menus_path(:walkin => true)
+    end
   end
 
   def update
     id = params[:id]
     order = Order.find(id)
-    if @current_user.customer?
-      order.status = "confirmed"
-      order.save
-      flash[:error] = " Order confirmed. Continue shoping "
-      redirect_to menus_path
-    elsif @current_user.clerk?
-      order.status = params[:status]
-      order.save
-      redirect_to orders_path
+    if order.user_id = 2
+      if params[:walkin]
+        order.status = params[:status]
+        order.save
+        redirect_to orders_path
+      else
+        order.status = "confirmed"
+        order.save
+        flash[:error] = " Order confirmed"
+        redirect_to orders_path
+      end
+    else
+      if @current_user.customer?
+        order.status = "confirmed"
+        order.save
+        flash[:error] = " Order confirmed. Continue shoping "
+        redirect_to menus_path
+      elsif @current_user.clerk?
+        order.status = params[:status]
+        order.save
+        redirect_to orders_path
+      end
     end
   end
 
   def edit
     id = params[:id]
     @order = Order.find(id)
+    @orderitems = OrderItem.where(order_id: @order.id).all
+  end
+
+  def destroy
+    id = params[:id]
+    order = Order.find(id)
+    order.destroy
+    if @current_user.customer?
+      redirect_to menus_path
+    elsif @current_user.clerk?
+      redirect_to menus_path(:walkin => true)
+    end
   end
 
   def order_params
-    params[:order].permit(:id, :status, :from_date, :end_date, :email, :updated_at)
+    params[:order].permit(:id, :status, :from_date, :end_date, :email, :updated_at, :walkin)
   end
 end

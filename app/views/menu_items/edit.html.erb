@@ -17,22 +17,34 @@
   <link rel="stylesheet" type="text/css" href="menu.css">
 </head>
 
-<body class="content" style="opacity: 0.95;">
+<body class="content" style="opacity: 0.95;width: 50%">
   <ul class="navul" style="padding-top: 10px">
     <li class="navli"><a class="active" href="/menus">Menu</a></li>
     <li class="navli"><a href="/users">Users</a></li>
-    <li class="navli"><a href="/users">Reports</a></li>
+    <li class="navli"><a href="/orders">Reports</a></li>
   </ul>
 
 <main class="main">
 
 
 
-<%= form_with(url: "/menu_items/#{@item.id}", method: "put", class: "Add-Menu") do %>
-        <%= text_field_tag 'name', nil, placeholder: "#{@item.name}", class: "AddMenu-txt" %>
-        <%= text_field_tag 'price', nil, placeholder: "#{@item.price}", class: "AddMenu-txt" %>
-        <%= text_field_tag 'description', nil, placeholder: "#{@item.description}", class: "AddMenu-txt" %>
-        <%= text_field_tag 'image_id', nil, placeholder: 'Image URL', class: "AddMenu-txt" %>
+<%= form_with(url: "/menu_items/#{@item.id}", method: "put") do %>
+        <div style="display: flex;">
+          <p>Name:</p>
+          <%= text_field_tag 'name', nil, placeholder: "#{@item.name}", class: "AddMenu-txt", style: "width: 50%; margin-left: 70px;" %>
+        </div>
+        <div style="display: flex;">
+          <p>Price:</p>
+          <%= text_field_tag 'price', nil, placeholder: "#{@item.price}", class: "AddMenu-txt", style: "width: 50%; margin-left: 75px;" %>
+        </div>
+        <div style="display: flex;">
+          <p>Description:</p>
+          <%= text_area_tag 'description', nil, rows: 10 ,cols: 50, placeholder: "#{@item.description}", class: "AddMenu-txt", style: "margin-top: 10px; margin-left: 20px;" %>
+        </div>
+        <div style="display: flex;">
+          <p>Image:</p>
+          <%= text_field_tag 'image_id', nil, placeholder: 'Image URL', class: "AddMenu-txt", style: "width: 50%;margin-left: 62px;" %>
+        </div>
         <%= button_tag "Update" , class: "AddMenu-button" , style: "background-color: brown; border: 1px solid brown" %>
 <%end%>
 

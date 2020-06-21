@@ -29,9 +29,15 @@
                     <li>
                         <a class="try" href="#">About</a>
                     </li>
+                    <% if @current_user.clerk?%>
+                    <li>
+                      <a class="try" href="/menus?walkin=true">Menu</a>
+                    </li>
+                    <% else %>
                     <li>
                         <a class="try" href="/menus">Menu</a>
                     </li>
+                  <% end %>
                     <li>
                         <a class="try" href="#">Get Here</a>
                     </li>
@@ -67,7 +73,7 @@
                                                 </div>
                                                 <p style="margin-top: 5px; margin-right: 100px"><%= item.description %> </p>
                                                 </div>
-                                            <img src="coffee.jpg" width=50% height="100" border-radius="5px">
+                                               <img src="<%= item.image_id %>" width=50% height="100" border-radius="5px">
 
                                          </div>
                                             </td>
@@ -92,6 +98,7 @@
                  <ol style="margin-bottom: 0;">
                      <li>
                          <article class="box">
+                            <%= link_to "Clear" , "/orders/#{@order.id}", method: :delete %>
                              <h1 class="heading">Cart</h1>
                              <div style="border-bottom: 1px dashed #bbb;">
                              <% sum = 0 %>

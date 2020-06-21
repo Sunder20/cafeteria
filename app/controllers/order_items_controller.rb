@@ -6,7 +6,11 @@ class OrderItemsController < ApplicationController
       order_item = OrderItem.find_by(menu_item_id: id, order_id: order_id)
       order_item.quantity = order_item.quantity + 1
       order_item.save
-      redirect_to menus_path
+      if @current_user.customer?
+        redirect_to menus_path
+      elsif @current_user.clerk?
+        redirect_to menus_path(:walkin => true)
+      end
     else
       item = MenuItem.find(params[:id])
       OrderItem.create!(
@@ -17,7 +21,11 @@ class OrderItemsController < ApplicationController
         menu_item_id: item.id,
         quantity: 1,
       )
-      redirect_to menus_path
+      if @current_user.customer?
+        redirect_to menus_path
+      elsif @current_user.clerk?
+        redirect_to menus_path(:walkin => true)
+      end
     end
   end
 
@@ -28,12 +36,20 @@ class OrderItemsController < ApplicationController
     if order_item.quantity == 0
       order_item.destroy
     end
-    redirect_to menus_path
+    if @current_user.customer?
+      redirect_to menus_path
+    elsif @current_user.clerk?
+      redirect_to menus_path(:walkin => true)
+    end
   end
 
   def destroy
     order_item = OrderItem.find(params[:id])
     order_item.destroy
-    redirect_to menus_path
+    if @current_user.customer?
+      redirect_to menus_path
+    elsif @current_user.clerk?
+      redirect_to menus_path(:walkin => true)
+    end
   end
 end

@@ -20,7 +20,7 @@
     <ul class="navul">
 
         <li class="navli"><a class="active" href="/orders ">Pending Orders</a></li>
-        <li class="navli"><a href="/users">Walk-in</a></li>
+        <li class="navli"><a href="/menus?walkin=true">Walk-in</a></li>
 
       </ul>
     <main class="main">
@@ -28,18 +28,30 @@
         <div class="menus">
           <div class="order-item">
           <ul>
-          <% Order.pending.all.each do |order|%>
+          <% Order.confirmed.all.each do |order|%>
             <li>
             <label class='MyMenuItem-Container'>
               <%= link_to "#{order.id}     #{User.find(order.user_id).name}", order_path(id: "#{order.id}") , :class => "menu_list"%>
-              <%= form_with(url: "/orders/#{order.id}" ,method: "put") do %>
-                <div style="display: flex; margin-left: 60px;">
-                  <input
-                      name="status"
-                      type="checkbox" <%= order.delivered? ? "checked" : "" %>
-                      onclick="this.form.submit()"
-                  >
-                </div>
+              <% if order.user_id = 2%>
+                <%= form_with(url: "/orders/#{order.id}?walkin=true" ,method: "put") do %>
+                  <div style="display: flex; margin-left: 60px;">
+                    <input
+                        name="status"
+                        type="checkbox" <%= order.delivered? ? "checked" : "" %>
+                        onclick="this.form.submit()"
+                    >
+                  </div>
+                <% end %>
+              <% else %>
+                <%= form_with(url: "/orders/#{order.id}" ,method: "put") do %>
+                  <div style="display: flex; margin-left: 60px;">
+                    <input
+                        name="status"
+                        type="checkbox" <%= order.delivered? ? "checked" : "" %>
+                        onclick="this.form.submit()"
+                    >
+                  </div>
+                <% end %>
               <% end %>
             </label>
             </li>

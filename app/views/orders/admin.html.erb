@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="home.css">
-    <link rel="stylesheet" type="text/css" href="menu.css">
+    <!--<link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="menu.css">-->
 </head>
-<body style="width: 40%;">
+<body style="width: 50%;">
     <ul class="navul">
         <li class="navli"><a href="/menus">Menu</a></li>
         <li class="navli"><a href="/users">Users</a></li>
@@ -24,21 +24,41 @@
   <main class="main">
         <h1 class="Menupage-title">Reports</h1>
 
-<%= form_with(url: "/orders", method: "get", class: "Add-Menu") do %>
-  <%= date_field_tag 'from_date', DateTime.now.to_date , class: "AddMenu-txt"  %>
-  <%= date_field_tag 'end_date', DateTime.now.to_date , class: "AddMenu-txt" %>
-  <%= email_field_tag 'email',nil , :placeholder => 'User Email', class: "AddMenu-txt" %>
-  <%= button_tag "Go" , class: "AddMenu-button" %>
-<% end %>
+  <%= form_with(url: orders_path, method: :get, local: true, class: "Add-Menu") do%>
+    <%= date_field_tag 'from_date', @from, class: "AddMenu-txt"  %>
+    <%= date_field_tag 'end_date', @to , class: "AddMenu-txt" %>
+    <%= email_field_tag 'email',nil , :placeholder => 'User Email', class: "AddMenu-txt" %>
+    <%= submit_tag("Go") %>
+  <% end %>
 
-<ul>
-<% @order.each do |order|%>
+<ul style="list-style-type: none;">
+  <% @order.each do |order|%>
             <li>
             <label class='MyMenuItem-Container'>
-              <%= link_to "#{order.id}         #{User.find(order.user_id).name}      #{order.updated_at.to_date}", order_path(id: "#{order.id}") , :class => "menu_list"%>
+
+            <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
+            <table style="width: 100%;" border="0">
+          <td align="left">
+            <p><%= order.id %></p>
+          </td>
+          <td align="center">
+            <p> <%= User.find(order.user_id).name %></p>
+          </td>
+          <td>
+            <p><%= User.find(order.user_id).email %></p>
+          </td>
+          <td>
+            <p><%= order.updated_at.to_date %></p>
+          </td>
+          </table>
+        </a>
+
             </label>
             </li>
 <% end%>
+<%= label_tag "Count"%>
+<%= @order.count %>
+
 </ul>
 </main>
 </body>
