@@ -1,6 +1,6 @@
 
 body{
-  background: url(coffee.jpg) no-repeat center left fixed;
+  background-image: image-url('coffee.jpg') no-repeat center left fixed;
   background-size: cover;
   background-attachment: fixed;
   overflow: auto;
