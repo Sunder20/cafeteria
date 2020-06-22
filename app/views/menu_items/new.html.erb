@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <script type="text/javascript"></script>
-  <title>admin-Twenty & Six Espresso</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
+  <head>
+    <script type="text/javascript"></script>
+    <title>admin-Twenty & Six Espresso</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
-  <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
-  <link rel="stylesheet" type="text/css" href="home.css">
-  <link rel="stylesheet" type="text/css" href="menu.css">
-</head>
-
-<body class="content" style="opacity: 0.95;">
-  <ul class="navul" style="padding-top: 10px">
-    <li class="navli"><a class="active" href="/menus">Menu</a></li>
-    <li class="navli"><a href="/users">Users</a></li>
-    <li class="navli"><a href="/orders">Reports</a></li>
-  </ul>
-
-  <main class="main">
-    <h1 class="Menupage-title">Menu 1</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="menu.css">
+  </head>
+  <body class="content" style="opacity: 0.95;">
+    <main class="main">
+      <h1 class="Menupage-title"><%= @menu.name %></h1>
       <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post") do %>
         <div style="display: flex;">
           <p>Name:</p>
@@ -43,6 +35,6 @@
         </div>
         <%= button_tag "Add" , class: "AddMenu-button" %>
       <% end %>
-  </main>
-</body>
+    </main>
+  </body>
 </html>

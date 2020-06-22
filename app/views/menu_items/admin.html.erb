@@ -1,91 +1,65 @@
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <script type="text/javascript"></script>
-  <title>admin-Twenty & Six Espresso</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
+  <head>
+    <script type="text/javascript"></script>
+    <title>admin-Twenty & Six Espresso</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
-  <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
-  <link rel="stylesheet" type="text/css" href="home.css">
-  <link rel="stylesheet" type="text/css" href="menu.css">
-</head>
-
-<body class="content" style="opacity: 0.95;width: 50%;">
-  <ul class="navul" style="padding-top: 10px">
-    <li class="navli"><a class="active" href="/menus">Menu</a></li>
-    <li class="navli"><a href="/users">Users</a></li>
-    <li class="navli"><a href="/orders">Reports</a></li>
-  </ul>
-
-  <main class="main">
-    <h1 class="Menupage-title">Menu 1</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="menu.css">
+  </head>
+  <body class="content" style="opacity: 0.95;width: 50%;">
+    <main class="main">
+      <h1 class="Menupage-title">Menu 1</h1>
       <!--<%= form_with(url: "/menu_items/new?id=#{@menu.id}", method: "get", class: "Add-Menu") do %>
         <%= button_tag "Add New Item" , class: "AddMenu-button" %>
         <%= @menu.id %>
       <% end %> -->
       <%= link_to "Add New Item", new_menu_item_path(id: "#{@menu.id}") , :class => "AddMenu-button" %>
-    <% @items.all.each do |item|%>
-
-      <div style="margin-right: 20px; margin-top: 50px; ">
-        <table style="width: 100%;">
-          <td align="center">
-            <table style="width: 100%;" border="0">
-              <td>
-                <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list", style="width: 100%;">
-                  <table style="width: 100%;" border="0">
-                    <td>
-                      <p><%= item.name %></p>
-                    </td>
-                    <td>
-                      <p> &#x20B9; <%= item.price %></p>
-                    </td>
-                  </table>
-                </a>
-              </td>
-              <td>
-                <a class="delete" href="javascript:void(0)">
-                  <%= form_with(url: "/menu_items/#{item.id}" ,method: "delete") do %>
-                    <input type="image" src="delete-outline.jpg">
-                  <% end %>
-                </a>
-              </td>
-            </table>
-            <p style="word-wrap: break-word;">
-              <%= item.description %>
-            </p>
-          </td>
-          <td align="center">
-            <img src="<%=item.image_id %>" width="50%" height="50%" >
-          </td>
-        </table>
-      </div>
-
-    <% end %>
-  </main>
-  <div class="zag slide"></div>
-  <script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    }
-  </script>
-</body>
-
+      <% @items.all.each do |item|%>
+        <div style="margin-right: 20px; margin-top: 50px; ">
+          <table style="width: 100%;">
+            <td align="center">
+              <table style="width: 100%;" border="0">
+                <td>
+                  <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list", style="width: 100%;">
+                    <table style="width: 100%;" border="0">
+                      <td>
+                        <p><%= item.name %></p>
+                      </td>
+                      <td>
+                        <p> &#x20B9; <%= item.price %></p>
+                      </td>
+                    </table>
+                  </a>
+                </td>
+                <td class="delete">
+                  <a class="delete" href="javascript:void(0)">
+                    <%= form_with(url: "/menu_items/#{item.id}" ,method: "delete") do %>
+                      <input type="image" src="delete-outline.jpg"
+                    onclick="return confirm('Are you sure you want to delete?');"
+                    >
+                    <% end %>
+                  </a>
+                </td>
+              </table>
+              <p style="word-wrap: break-word;">
+                <%= item.description %>
+              </p>
+            </td>
+            <td align="center">
+              <img src="<%=item.image_id %>" width="50%" height="50%" >
+            </td>
+          </table>
+        </div>
+      <% end %>
+    </main>
+    <div class="zag slide"></div>
+  </body>
 </html>

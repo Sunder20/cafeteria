@@ -3,24 +3,49 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
 
-  def self.pending
-    all.where(status: "pending")
+  def self.get_sum(order)
+    sum = 0
+    order_items = OrderItem.of_order(order)
+    order_items.each do |item|
+      sum = sum + OrderItem.get_price(item)
+    end
+    return sum
+  end
+
+  def self.of_user(user)
+    all.where(user_id: user.id)
+  end
+
+  def self.of_user(user)
+    all.where(user_id: user.id)
+  end
+
+  def self.unconfirmed
+    all.where(status: "unconfirmed")
   end
 
   def self.confirmed
     all.where(status: "confirmed")
   end
 
+  def self.ready
+    all.where(status: "ready")
+  end
+
   def self.delivered
     all.where(status: "delivered")
   end
 
-  def pending?
-    status == "pending"
+  def unconfirmed?
+    status == "unconfirmed"
   end
 
   def confirmed?
     status == "confirmed"
+  end
+
+  def ready?
+    status == "ready"
   end
 
   def delivered?

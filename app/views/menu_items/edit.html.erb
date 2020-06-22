@@ -1,34 +1,22 @@
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <script type="text/javascript"></script>
-  <title>admin-Twenty & Six Espresso</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
+  <head>
+    <script type="text/javascript"></script>
+    <title>admin-Twenty & Six Espresso</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
-  <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
-  <link rel="stylesheet" type="text/css" href="home.css">
-  <link rel="stylesheet" type="text/css" href="menu.css">
-</head>
-
-<body class="content" style="opacity: 0.95;width: 50%">
-  <ul class="navul" style="padding-top: 10px">
-    <li class="navli"><a class="active" href="/menus">Menu</a></li>
-    <li class="navli"><a href="/users">Users</a></li>
-    <li class="navli"><a href="/orders">Reports</a></li>
-  </ul>
-
-<main class="main">
-
-
-
-<%= form_with(url: "/menu_items/#{@item.id}", method: "put") do %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="menu.css">
+  </head>
+  <body class="content" style="opacity: 0.95;width: 50%">
+    <main class="main">
+      <%= form_with(url: "/menu_items/#{@item.id}", method: "put") do %>
         <div style="display: flex;">
           <p>Name:</p>
           <%= text_field_tag 'name', nil, placeholder: "#{@item.name}", class: "AddMenu-txt", style: "width: 50%; margin-left: 70px;" %>
@@ -45,9 +33,8 @@
           <p>Image:</p>
           <%= text_field_tag 'image_id', nil, placeholder: 'Image URL', class: "AddMenu-txt", style: "width: 50%;margin-left: 62px;" %>
         </div>
-        <%= button_tag "Update" , class: "AddMenu-button" , style: "background-color: brown; border: 1px solid brown" %>
-<%end%>
-
-</main>
-</body>
+        <%= button_tag "Update" , class: "AddMenu-button" , style: "background-color: brown; border: 1px solid brown", :onclick => "return confirm('Are you sure you want to update?');"%>
+      <%end%>
+    </main>
+  </body>
 </html>

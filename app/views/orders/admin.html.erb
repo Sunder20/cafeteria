@@ -1,66 +1,53 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script type="text/javascript"></script>
     <title>admin-Twenty & Six Espresso</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
     <!--<link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">-->
-</head>
-<body style="width: 50%;">
-    <ul class="navul">
-        <li class="navli"><a href="/menus">Menu</a></li>
-        <li class="navli"><a href="/users">Users</a></li>
-        <li class="navli"><a class="active" href="/orders">Reports</a></li>
-      </ul>
-  <main class="main">
-        <h1 class="Menupage-title">Reports</h1>
-
-  <%= form_with(url: orders_path, method: :get, local: true, class: "Add-Menu") do%>
-    <%= date_field_tag 'from_date', @from, class: "AddMenu-txt"  %>
-    <%= date_field_tag 'end_date', @to , class: "AddMenu-txt" %>
-    <%= email_field_tag 'email',nil , :placeholder => 'User Email', class: "AddMenu-txt" %>
-    <%= submit_tag("Go") %>
-  <% end %>
-
-<ul style="list-style-type: none;">
-<%= label_tag "Count"%>
-<%= @order.count %>
-  <% @order.each do |order|%>
-            <li>
+  </head>
+  <body style="width: 50%;">
+    <main class="main">
+      <h1 class="Menupage-title">Reports</h1>
+      <%= form_with(url: orders_path , method: :get, local: true, class: "Add-Menu") do%>
+        <%= date_field_tag 'from_date', @from, class: "AddMenu-txt"  %>
+        <%= date_field_tag 'end_date', @to , class: "AddMenu-txt" %>
+        <%= email_field_tag 'email',nil , :placeholder => 'User Email', class: "AddMenu-txt" %>
+        <%= hidden_field_tag 'admin' , value = true %>
+        <%= submit_tag("Go") %>
+      <% end %>
+      <ul style="list-style-type: none;">
+        <%= label_tag "Count"%>
+        <%= @order.count %>
+        <% @order.each do |order|%>
+          <li>
             <label class='MyMenuItem-Container'>
-
-            <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
-            <table style="width: 100%;" border="0">
-          <td align="left">
-            <p><%= order.id %></p>
-          </td>
-          <td align="center">
-            <p> <%= User.find(order.user_id).name %></p>
-          </td>
-          <td>
-            <p><%= User.find(order.user_id).email %></p>
-          </td>
-          <td>
-            <p><%= order.updated_at.to_date %></p>
-          </td>
-          </table>
-        </a>
-
+              <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
+                <table style="width: 100%;" border="0">
+                  <td align="left">
+                    <p><%= order.id %></p>
+                  </td>
+                  <td align="center">
+                    <p> <%= User.find(order.user_id).name %></p>
+                  </td>
+                  <td>
+                    <p><%= User.find(order.user_id).email %></p>
+                  </td>
+                  <td>
+                    <p><%= order.updated_at.to_date %></p>
+                  </td>
+                </table>
+              </a>
             </label>
-            </li>
-<% end%>
-
-
-</ul>
-</main>
-</body>
+          </li>
+        <% end%>
+      </ul>
+    </main>
+  </body>
 </html>

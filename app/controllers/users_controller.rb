@@ -5,6 +5,13 @@ class UsersController < ApplicationController
     @current_user = User.find(session[:current_user_id])
     if @current_user.admin?
       render "clerk"
+    elsif @current_user.customer?
+      @order = Order.where("status = ? or status = ? ", "confirmed", "delivered").of_user(@current_user)
+      render "orders"
+    elsif @current_user.clerk?
+      user = User.find(2)
+      @order = Order.where("status = ? or status = ? ", "confirmed", "delivered").of_user(user)
+      render "orders"
     end
   end
 

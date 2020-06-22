@@ -8,7 +8,7 @@ class OrderItemsController < ApplicationController
       order_item.save
       if @current_user.customer?
         redirect_to menus_path
-      elsif @current_user.clerk?
+      else
         redirect_to menus_path(:walkin => true)
       end
     else
@@ -23,7 +23,7 @@ class OrderItemsController < ApplicationController
       )
       if @current_user.customer?
         redirect_to menus_path
-      elsif @current_user.clerk?
+      else
         redirect_to menus_path(:walkin => true)
       end
     end
@@ -38,7 +38,7 @@ class OrderItemsController < ApplicationController
     end
     if @current_user.customer?
       redirect_to menus_path
-    elsif @current_user.clerk?
+    else
       redirect_to menus_path(:walkin => true)
     end
   end
@@ -48,7 +48,7 @@ class OrderItemsController < ApplicationController
     order_item.destroy
     if @current_user.customer?
       redirect_to menus_path
-    elsif @current_user.clerk?
+    else
       redirect_to menus_path(:walkin => true)
     end
   end

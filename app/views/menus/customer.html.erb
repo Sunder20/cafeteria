@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script type="text/javascript"></script>
     <title>Twenty &amp; Six Espresso</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">
@@ -12,142 +12,115 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Monsieur La Doulaise' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Annie Use Your Telescope' rel='stylesheet'>
-
-</head>
-<body>
-     <div class="greenline"></div>
-     <div class="fullwrap">
-         <div class="container">
-             <nav class="menus" id="menu" role="navigation">
-                 <a href="/">
-                    <img class="logo side" src="http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/logo@2x.png">
-                </a>
-                <ul class="navi">
-                    <li>
-                        <a class="try" href="/">Home</a>
-                    </li>
-                    <li>
-                        <a class="try" href="#">About</a>
-                    </li>
-                    <% if @current_user.clerk?%>
-                    <li>
-                      <a class="try" href="/menus?walkin=true">Menu</a>
-                    </li>
-                    <% else %>
-                    <li>
-                        <a class="try" href="/menus">Menu</a>
-                    </li>
-                  <% end %>
-                    <li>
-                        <a class="try" href="#">Get Here</a>
-                    </li>
-                </ul>
-             </nav>
-             <div class="zag slide"></div>
-         </div>
-         <div id="wrapper" class="slide">
-           <div class="content cf" style="width: 520px;">
-                <ol style="margin-bottom: 0;">
-                    <li>
-                        <article class="box">
-                            <h1 class="heading">Eat</h1>
-
-
-                            <% MenuItem.where(menu_id: Menu.active.id).each do |item| %>
-
-                                <table style="width: 100%;" border="0">
-                                    <tbody>
-                                        <tr>
-                                            <td style="padding-bottom: 10px">
-                                                <div style="display: flex;">
-                                                <div>
-                                                <div style="display: flex;">
-                                                <strong><%= item.name %></strong>
-                                                <%= form_with(url: "/order_items?id=#{item.id}&order_id=#{@order.id}" , method: "post") do %>
-
-                                                    <button class="btn" style="margin-top: 10px"><i class="fa fa-plus"></i></button>
-                                                <% end %>
-                                                <%= form_with(url: "/order_items/#{item.id}?order_id=#{@order.id}", method: "put") do %>
-                                                <button class="btn" style="margin-top: 10px"><i class="fa fa-minus"></i></button>
-                                                <% end %>
-                                                </div>
-                                                <p style="margin-top: 5px; margin-right: 100px"><%= item.description %> </p>
-                                                </div>
-                                               <img src="<%= item.image_id %>" width=50% height="100" border-radius="5px">
-
-                                         </div>
-                                            </td>
-                                            <td align="right">
-                                                <strong> &#x20B9; <%= item.price %></strong>
-                                            </td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            <% end %>
-
-
-                        </article>
-                    </li>
-                </ol>
-                <div class="big zag"></div>
-           </div>
-         </div>
-         <div id="wrapper" class="slide" style="float: right; position: fixed; right:0; width: 50%;">
-            <div class="content cf" style="width: 55%;">
-                 <ol style="margin-bottom: 0;">
-                     <li>
-                         <article class="box">
-                            <%= link_to "Clear" , "/orders/#{@order.id}", method: :delete %>
-                             <h1 class="heading">Cart</h1>
-                             <div style="border-bottom: 1px dashed #bbb;">
-                             <% sum = 0 %>
-                                <% @orderitems.all.each do |item| %>
-                                <table style="width: 100%;" border="0">
-
-                                  <td> <strong><%= item.menu_item_name %></strong> </td>
-                                  <td align="right">
-                                    <strong> No:  <%= item.quantity %></strong>
-                                  </td>
-                                  <td align="right">
-                                    <% price = item.menu_item_price.to_i * item.quantity.to_i %>
-                                    <strong> &#x20B9; <%= price %></strong>
-                                    <% sum = sum + price %>
-                                  </td>
-                                  <td align="right">
-                                  <%= form_with(url: "/order_items/#{item.id}", method: "delete") do %>
-                                    <a class="delete" href="javascript:void(0)">
-                                      <input type="image" src="delete-outline.jpg">
-
-                                    </a>
-                                  <% end %>
-                                  </td>
-
-                                </table>
+  </head>
+  <body>
+    <div class="greenline"></div>
+    <div class="fullwrap">
+      <div class="container">
+        <nav class="menus" id="menu" role="navigation">
+          <a href="/">
+            <img class="logo side" src="http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/logo@2x.png">
+          </a>
+          <ul class="navi">
+            <li>
+              <a class="try" href="/">Home</a>
+            </li>
+            <li>
+              <a class="try" href="#">About</a>
+            </li>
+            <% if @current_user.clerk?%>
+              <li>
+                <a class="try" href="/menus?walkin=true">Menu</a>
+              </li>
+            <% else %>
+              <li>
+                <a class="try" href="/menus">Menu</a>
+              </li>
+            <% end %>
+            <li>
+              <a class="try" href="/users">Your Orders</a>
+            </li>
+            <li>
+              <a class="try" href="#">Get Here</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="zag slide"></div>
+      </div>
+      <div id="wrapper" class="slide">
+        <div class="content cf" style="width: 520px;">
+          <ol style="margin-bottom: 0;">
+            <li>
+              <article class="box">
+                <h1 class="heading">Eat</h1>
+                <% MenuItem.where(menu_id: Menu.active.id).each do |item| %>
+                  <table style="width: 100%;" border="0">
+                    <tbody>
+                      <tr>
+                        <td style="padding-bottom: 10px">
+                          <div style="display: flex;">
+                            <div>
+                              <div style="display: flex;">
+                                <strong><%= item.name %></strong>
+                                <%= form_with(url: "/order_items?id=#{item.id}&order_id=#{@order.id}" , method: "post") do %>
+                                  <button class="btn" style="margin-top: 10px"><i class="fa fa-plus"></i></button>
                                 <% end %>
-                             </div>
-                             <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; <%= sum %></strong></h4>
-                             <a class="try" href="<%= edit_order_path(id: @order.id)  %>" style="text-align: center;">Proceed</a>
-                          </article>
-                     </li>
-                </ol>
-            </div>
+                                <%= form_with(url: "/order_items/#{item.id}?order_id=#{@order.id}", method: "put") do %>
+                                  <button class="btn" style="margin-top: 10px"><i class="fa fa-minus"></i></button>
+                                <% end %>
+                              </div>
+                              <p style="margin-top: 5px; margin-right: 100px"><%= item.description %> </p>
+                            </div>
+                            <img src="<%= item.image_id %>" width=50% height="100" border-radius="5px">
+                          </div>
+                        </td>
+                        <td align="right">
+                          <strong> &#x20B9; <%= item.price %></strong>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <% end %>
+              </article>
+            </li>
+          </ol>
+          <div class="big zag"></div>
         </div>
-     </div>
-     <script>
-        function openCity(evt, cityName) {
-          var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName("tabcontent");
-          for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-          }
-          tablinks = document.getElementsByClassName("tablinks");
-          for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-          }
-          document.getElementById(cityName).style.display = "block";
-          evt.currentTarget.className += " active";
-        }
-     </script>
-</body>
+      </div>
+      <div id="wrapper" class="slide" style="float: right; position: fixed; right:0; width: 50%;">
+        <div class="content cf" style="width: 55%;">
+          <ol style="margin-bottom: 0;">
+            <li>
+              <article class="box">
+                <%= link_to "Clear" , "/orders/#{@order.id}", method: :delete %>
+                <h1 class="heading">Cart</h1>
+                <div style="border-bottom: 1px dashed #bbb;">
+                  <% @orderitems.all.each do |item| %>
+                    <table style="width: 100%;" border="0">
+                      <td> <strong><%= item.menu_item_name %></strong> </td>
+                      <td align="right">
+                        <strong> No:  <%= item.quantity %></strong>
+                      </td>
+                      <td align="right">
+                        <strong> &#x20B9; <%= OrderItem.get_price(item) %></strong>
+                      </td>
+                      <td align="right">
+                        <%= form_with(url: "/order_items/#{item.id}", method: "delete") do %>
+                          <a class="delete" href="javascript:void(0)">
+                            <input type="image" src="delete-outline.jpg">
+                          </a>
+                        <% end %>
+                      </td>
+                    </table>
+                  <% end %>
+                </div>
+                <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; <%= Order.get_sum(@order) %></strong></h4>
+                <a class="try" href="<%= edit_order_path(id: @order.id)  %>" style="text-align: center;">Proceed</a>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

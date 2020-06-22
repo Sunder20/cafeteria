@@ -1,60 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script type="text/javascript"></script>
     <title>admin-Twenty & Six Espresso</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="home.css">
-    <link rel="stylesheet" type="text/css" href="menu.css">
-</head>
-
-
-<body style="width: 40%;">
-    <ul class="navul">
-        <li class="navli"><a class="active" href="/menus">Menu</a></li>
-        <li class="navli"><a href="/users">Users</a></li>
-        <li class="navli"><a href="/orders">Reports</a></li>
-      </ul>
+  </head>
+  <body style="width: 40%;">
     <main class="main">
-        <h1 class="Menupage-title">MENUS</h1>
-        <%= form_with(url: "/menus", method: "post", class: "Add-Menu") do %>
-          <%= text_field_tag 'name', nil, placeholder: "New Menu Name", class: "AddMenu-txt" , :required => true%>
-          <%= button_tag "Add" , class: "AddMenu-button" %>
-        <% end %>
-        <div class="menus">
+      <h1 class="Menupage-title">MENUS</h1>
+      <%= form_with(url: "/menus", method: "post", class: "Add-Menu") do %>
+        <%= text_field_tag 'name', nil, placeholder: "New Menu Name", class: "AddMenu-txt" , :required => true%>
+        <%= button_tag "Add" , class: "AddMenu-button" %>
+      <% end %>
+      <div class="menus">
         <ul>
-         <% Menu.all.each do |menu|%>
+          <% Menu.all.each do |menu|%>
             <li>
-            <label class='MyMenuItem-Container'>
+              <label class='MyMenuItem-Container'>
                 <%= link_to "#{menu.name}", menu_items_path(id: "#{menu.id}") , :class => "menu_list"%>
                 <a class="delete" href="javascript:void(0)">
                   <%= form_with(url: "/menus/#{menu.id}" ,method: "delete") do %>
-                    <input type="image" src="delete-outline.jpg">
+                    <input type="image" src="delete-outline.jpg"
+                     onclick="return confirm('Are you sure you want to delete?');">
                   <% end %>
                 </a>
                 <%= form_with(url: "/menus/#{menu.id}" ,method: "put") do %>
-                <div style="display: flex; margin-left: 60px;">
-                        <input
-                            name="active"
-                            type="checkbox" <%= menu.active ? "checked" : "" %>
-                            onclick="this.form.submit()"
-                        >
+                  <div style="display: flex; margin-left: 60px;">
+                    <input
+                      name="active"
+                      type="checkbox" <%= menu.active ? "checked" : "" %>
+                      onclick="this.form.submit()"
+                    >
                       <% if menu.active %>
                         <h4>Active</h4>
                       <% end %>
-                      </div>
-                    <% end %>
-
-            </label>
-            </li>
-          <% end %>
-        </ul>
+                    </div>
+                  <% end %>
+                </label>
+              </li>
+            <% end %>
+          </ul>
         </div>
-    </main>
-    <div class="zag slide"></div>
-</body>
+      </main>
+      <div class="zag slide"></div>
+    </body>
+  </html>

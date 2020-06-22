@@ -1,66 +1,60 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script type="text/javascript"></script>
     <title>admin-Twenty & Six Espresso</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">
-</head>
-
-<body style="width: 50%;">
-    <ul class="navul">
-
-        <li class="navli"><a class="active" href="/orders ">Pending Orders</a></li>
-        <li class="navli"><a href="/menus?walkin=true">Walk-in</a></li>
-
-      </ul>
+  </head>
+  <body style="width: 70%;">
     <main class="main">
-        <h1 class="Menupage-title">Pending Orders</h1>
-        <div class="menus">
-          <div class="order-item">
-          <ul>
-          <% Order.confirmed.all.each do |order|%>
-            <li>
-            <label class='MyMenuItem-Container'>
-              <%= link_to "#{order.id}     #{User.find(order.user_id).name}", order_path(id: "#{order.id}") , :class => "menu_list"%>
-              <% if order.user_id = 2%>
-                <%= form_with(url: "/orders/#{order.id}?walkin=true" ,method: "put") do %>
-                  <div style="display: flex; margin-left: 60px;">
-                    <input
-                        name="status"
-                        type="checkbox" <%= order.delivered? ? "checked" : "" %>
-                        onclick="this.form.submit()"
-                    >
-                  </div>
+      <div style="display: flex;  ">
+        <div style="margin-right: 40px;">
+          <h3 class="Menupage-title" style="text-align: center;">Pending Orders</h3>
+          <div class="menus">
+            <div class="order-item">
+              <ul>
+                <% Order.confirmed.all.each do |order|%>
+                  <li>
+                    <label class='MyMenuItem-Container'>
+                      <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
+                        <p><%= order.id %>&nbsp; &nbsp; &nbsp; &nbsp; <%= User.find(order.user_id).name %></p>
+                      </a>
+                      <%= link_to "Ready", "/orders/#{order.id}", method: :put , :class => "AddMenu-button" , :style => "display: flex; margin-left: 60px;" %>
+                    </label>
+                  </li>
                 <% end %>
-              <% else %>
-                <%= form_with(url: "/orders/#{order.id}" ,method: "put") do %>
-                  <div style="display: flex; margin-left: 60px;">
-                    <input
-                        name="status"
-                        type="checkbox" <%= order.delivered? ? "checked" : "" %>
-                        onclick="this.form.submit()"
-                    >
-                  </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="margin-right: 10px;">
+          <h3 class="Menupage-title" style="text-align: center;">To be delivered</h3>
+          <div class="menus">
+            <div class="order-item" >
+              <ul>
+                <% Order.ready.all.each do |order|%>
+                  <li>
+                    <label class='MyMenuItem-Container'>
+                      <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
+                        <p><%= order.id %>&nbsp; &nbsp; &nbsp; &nbsp; <%= User.find(order.user_id).name %></p>
+                      </a>
+                      <%= link_to "Delivered", "/orders/#{order.id}", method: :put , :class => "AddMenu-button" , :style => " margin-left: 50px;" %>
+                    </label>
+                  </li>
                 <% end %>
-              <% end %>
-            </label>
-            </li>
-          <% end %>
-        </ul>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="zag slide"></div>
-
-</body>
+      <div class="zag slide"></div>
+    </main>
+  </body>
 </html>
