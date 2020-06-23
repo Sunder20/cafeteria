@@ -49,36 +49,31 @@
         </div>
       </div>
       <div id="wrapper" class="slide">
-        <div class="content cf" style="width: 60%;">
-          <ol style="margin-bottom: 0;">
+        <div class="content cf order_customer-content">
+          <ol class="menus_customer-contentOl">
             <li>
               <article class="box">
-                <h1 class="heading">
+                <h1 class="heading order_customer-title">
                   Your Orders
                 </h1>
-                <% @order.confirmed.each do |order|%>
+                <% @order.order("placed_at DESC").confirmed.each do |order|%>
                   <li>
                     <label class='MyMenuItem-Container'>
                       <a href="<%= order_path(id: "#{order.id}") %>" ,
-                          class="menu_list",
-                          style="width: 100%;"
-                        >
-                        <table style="width: 100%;" border="0">
+                        class="menu_list menu_items-menu_list",
+                      >
+                        <table class="menu_items-menu_list" border="0">
                           <td align="left">
                             <p>Order ID: <%= order.id %></p>
                           </td>
                           <td align="center">
-                            <%if order.delivered? %>
-                              <p style="color: green;"> Delivered </p>
-                            <% elsif order.confirmed? %>
-                              <p style="color: red;"> Yet to be delivered </p>
-                            <% end %>
+                            <p class="red-text"> Yet to be delivered </p>
                           </td>
                           <td>
-                            <p>Total: <%= Order.get_sum(order) %></p>
+                            <p>Cost: <%= Order.get_sum(order) %></p>
                           </td>
                           <td>
-                            <p><%= order.updated_at.to_date %></p>
+                            <p><%= order.placed_at.to_s.to_date %></p>
                           </td>
                         </table>
                       </a>
@@ -89,22 +84,17 @@
                   <li>
                     <label class='MyMenuItem-Container'>
                       <a href="<%= order_path(id: "#{order.id}") %>",
-                          class="menu_list",
-                          style="width: 100%;"
+                          class="menu_list menu_items-menu_list",
                         >
-                        <table style="width: 100%;" border="0">
+                        <table class="menu_items-menu_list" border="0">
                           <td align="left">
                             <p>Order ID: <%= order.id %></p>
                           </td>
                           <td align="center">
-                            <%if order.delivered? %>
-                              <p style="color: green;"> Delivered </p>
-                            <% elsif order.confirmed? %>
-                              <p style="color: red;"> Yet to be delivered </p>
-                            <% end %>
+                            <p class="green-text"> Delivered </p>
                           </td>
                           <td>
-                            <p>Total: <%= Order.get_sum(order) %></p>
+                            <p>Cost: <%= Order.get_sum(order) %></p>
                           </td>
                           <td>
                             <p><%= order.updated_at.to_date %></p>
@@ -120,6 +110,5 @@
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

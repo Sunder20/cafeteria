@@ -14,32 +14,34 @@
     <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">
   </head>
-  <body class="content" style="opacity: 0.95;width: 50%;">
+  <body class="content menu_items-content">
     <main class="main">
-      <h1 class="Menupage-title">Menu 1</h1>
-      <!--<%= form_with(url: "/menu_items/new?id=#{@menu.id}", method: "get", class: "Add-Menu") do %>
-        <%= button_tag "Add New Item" , class: "AddMenu-button" %>
-        <%= @menu.id %>
-      <% end %> -->
+      <div class="menu_items-form">
+        <h1 class="Menupage-title"><%= @menu.name %></h1>
+        <%= form_with(url: "/menus/#{@menu.id}" , method: :put, local: true, class: "Add-Menu menu_items-updatetag" ) do%>
+          <%= text_field_tag 'name', nil, placeholder: 'Update Menu Name', class: "AddMenu-txt menu_items-formImage" %>
+          <%= button_tag "Update" , class: "menu_items-Update AddMenu-button" , :onclick => "return confirm('Are you sure you want to update?');"%>
+        <% end %>
+      </div>
       <%= link_to "Add New Item", new_menu_item_path(id: "#{@menu.id}") , :class => "AddMenu-button" %>
-      <% @items.all.each do |item|%>
-        <div style="margin-right: 20px; margin-top: 50px; ">
-          <table style="width: 100%;">
+      <% @items.order("name ASC").all.each do |item|%>
+        <div class="menu_items-items">
+          <table class="menus_customer-list">
             <td align="center">
-              <table style="width: 100%;" border="0">
+              <table class="menu_items-itemlist" border="0">
                 <td>
-                  <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list", style="width: 100%;">
-                    <table style="width: 100%;" border="0">
-                      <td>
+                  <a   href="<%= edit_menu_item_path(id: item.id)  %>" , class="menu_list menu_items-table"  >
+                    <table class="menus_customer-list">
+                      <td align="left">
                         <p><%= item.name %></p>
                       </td>
-                      <td>
+                      <td align="right">
                         <p> &#x20B9; <%= item.price %></p>
                       </td>
                     </table>
                   </a>
                 </td>
-                <td class="delete">
+                <td align="right" class="delete">
                   <a class="delete" href="javascript:void(0)">
                     <%= form_with(url: "/menu_items/#{item.id}" ,method: "delete") do %>
                       <input type="image" src="delete-outline.jpg"
@@ -49,12 +51,12 @@
                   </a>
                 </td>
               </table>
-              <p style="word-wrap: break-word;">
+              <p class = "menu_items-description">
                 <%= item.description %>
               </p>
             </td>
-            <td align="center">
-              <img src="<%=item.image_id %>" width="50%" height="50%" >
+            <td align="right" style="width: 30%">
+              <img src="<%=item.image_id %>" width="150px" height="130px" >
             </td>
           </table>
         </div>

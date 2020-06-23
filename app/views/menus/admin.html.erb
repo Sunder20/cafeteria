@@ -10,7 +10,7 @@
     <link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
   </head>
-  <body style="width: 40%;">
+  <body class="menus_admin-body">
     <main class="main">
       <h1 class="Menupage-title">MENUS</h1>
       <%= form_with(url: "/menus", method: "post", class: "Add-Menu") do %>
@@ -19,7 +19,7 @@
       <% end %>
       <div class="menus">
         <ul>
-          <% Menu.all.each do |menu|%>
+          <% Menu.order("id DESC").all.each do |menu|%>
             <li>
               <label class='MyMenuItem-Container'>
                 <%= link_to "#{menu.name}", menu_items_path(id: "#{menu.id}") , :class => "menu_list"%>
@@ -30,7 +30,7 @@
                   <% end %>
                 </a>
                 <%= form_with(url: "/menus/#{menu.id}" ,method: "put") do %>
-                  <div style="display: flex; margin-left: 60px;">
+                  <div class="menus_admin-checkbox">
                     <input
                       name="active"
                       type="checkbox" <%= menu.active ? "checked" : "" %>

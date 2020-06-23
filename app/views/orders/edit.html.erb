@@ -43,22 +43,22 @@
         <div class="zag slide"></div>
       </div>
       <div id="wrapper" class="slide">
-        <div class="content cf" style = "width: 520px;" >
-          <ol style="margin-bottom: 0;">
+        <div class="content cf menus_customer-content" >
+          <ol class="menus_customer-contentOl">
             <li>
               <article class="box">
                 <h1 class="heading">Bill</h1>
-                <div style="border-bottom: 1px dashed #bbb;">
-                  <table style="width: 100%;" border="0">
+                <div class="menus_customer-cartdash">
+                  <table class="menus_customer-list" border="0">
                     <tbody>
                       <tr>
                         <% @orderitems.all.each do |item| %>
-                          <table style="width: 100%;" border="0">
+                          <table class="menus_customer-list" border="0">
                             <td> <strong><%= item.menu_item_name %></strong> </td>
                             <td align="right">
                               <strong> No:  <%= item.quantity %></strong>
                             </td>
-                            <td align="right">
+                            <td align="right" style="width: 30%;">
                               <strong> &#x20B9; <%= OrderItem.get_price(item) %></strong>
                             </td>
                           </table>
@@ -67,11 +67,14 @@
                     </tbody>
                   </table>
                 </div>
-                <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9;  <%= Order.get_sum(@order) %></strong></h4>
+                <div class="flexing">
+                  <h4 class="menus_customer-carttotal">Total:</h4>
+                  <h4 class="menus_customer-cartprice"><strong> &#x20B9;  <%= Order.get_sum(@order) %></strong></h4>
+                </div>
                 <% if @current_user.customer? %>
-                  <%= link_to "Pay Now" , "/orders/#{@order.id}" , method: :put, :class => "try", :style => "text-align: center;" %>
+                  <%= link_to "Pay Now" , "/orders/#{@order.id}" , method: :put, :class => "try", :class => "try menus_customer-cartproceed" %>
                 <% else %>
-                  <%= link_to "Pay Now" , "/orders/#{@order.id}?walkin=true" , method: :put, :class => "try", :style => "text-align: center;" %>
+                  <%= link_to "Pay Now" , "/orders/#{@order.id}?walkin=true" , method: :put, :class => "try",:class => "try menus_customer-cartproceed" %>
                 <% end %>
               </article>
             </li>

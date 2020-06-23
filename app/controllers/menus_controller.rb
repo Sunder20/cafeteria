@@ -56,9 +56,14 @@ class MenusController < ApplicationController
   def update
     id = params[:id]
     active = params[:active]
-    if active
+    name = params[:name]
+    menu1 = Menu.find(id)
+    if name
+      menu1.update(name: name )
+      redirect_to menu_items_path(:id => menu1.id)
+    elsif active
       menu0 = Menu.where(active: active).first
-      menu1 = Menu.find(id)
+
       menu0.active = false
       menu1.active = true
       menu0.save
@@ -78,10 +83,11 @@ class MenusController < ApplicationController
       unless menu1.nil?
         menu1.active = true
         menu1.save
+        menu.destroy
+      else
+        flash[:error] = "One active menu is needed"
       end
     end
-    menu.destroy
-    flash[:error] = "Please add a menu"
     redirect_to menus_path
   end
 end

@@ -1,0 +1,252 @@
+.login_button{
+    text-align: center !important;
+    height: 30px !important;
+}
+
+.navi-margin{
+    margin-top: 0 !important;
+}
+
+.fb-format{
+    float: left !important;
+    margin-left: 20px !important;
+}
+
+.twitter-format{
+    float: center !important;
+}
+
+.menu_items-description{
+    word-wrap: break-word !important;
+    float: left !important;
+}
+
+.insta-format{
+    float: right !important;
+    margin-right: 20px !important;
+}
+.newUser-link{
+    cursor: pointer !important;
+    color: dodgerblue !important;
+    margin-bottom: 0 !important;
+}
+
+.order_clerk-margin{
+    margin-right: 40px !important;
+}
+
+.order_clerk-title{
+    text-align: center !important;
+}
+
+.order_customer-content{
+    width: 60% !important;
+}
+
+.red-text{
+    color: red !important;
+}
+
+.green-text{
+    color: green !important;
+}
+
+
+.menus_customer-carttotal{
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.menus_customer-cartprice{
+    margin: 0 !important;
+    text-align: right !important;
+    width: 100% !important;
+}
+
+.signup-format{
+    margin-left: 0 !important;
+}
+
+.signUp-button{
+    text-align: center !important;
+    height: 30px !important;
+}
+
+.menu_items-content{
+    opacity: 0.95 !important;
+    width: 50% !important;
+}
+
+.menu_items-navul{
+    padding-top: 20px !important;
+}
+
+.menu_items-items{
+    margin-right: 20px !important;
+    margin-top: 50px !important;
+}
+
+.menu_items-itemlist{
+    width: 100% !important;
+}
+
+.menu_items-menu_list{
+    width: 100% !important;
+}
+
+.menu_items-form{
+    display: flex !important;
+}
+
+.menu_items-formName{
+    width: 50% !important;
+    margin-left: 70px !important;
+}
+
+.menu_items-formPrice{
+    width: 50% !important;
+    margin-left: 75px !important;
+}
+
+.menu_items-formDescription{
+    margin-top: 10px !important;
+    margin-left: 20px !important;
+}
+
+.menu_items-formImage{
+    width: 50% !important;
+    margin-left: 62px !important;
+}
+
+.menu_items-Update{
+    background-color: brown !important;
+    border: 1px solid brown !important;
+}
+
+.menu_items_new-content{
+    opacity: 0.95 !important;
+}
+
+.menu_items-button-margin{
+    margin-left: 560px !important;
+}
+
+.menu_items-update-margin{
+    margin-left: 540px !important;
+}
+
+.menus_admin-body{
+    width: 40% !important;
+}
+.menus_admin-checkbox{
+    display: flex !important;
+    margin-left: 60px !important;
+}
+
+.menus_customer-image{
+    margin-right: auto;
+}
+
+.menus_customer-content{
+    width: 520px !important;
+}
+
+.menus_customer-contentOl{
+    margin-bottom: 0 !important;
+}
+
+.menu_items-delete{
+    margin-bottom: 20px !important;
+    margin-left: 30px !important;
+    float: right !important;
+}
+
+.order_customer-title{
+    padding-bottom: 20px !important;
+    padding-left: 20px !important;
+}
+.menus_customer-list{
+    width: 100% !important;
+}
+
+.order_clerk-body{
+    width: 70%;
+}
+
+.menu_items-table{
+    width: 80% !important;
+}
+
+.menus_customer-listtd{
+    padding-bottom: 10px !important;
+}
+
+.menus_customer-plus{
+    margin-top: 10px !important;
+}
+
+.menus_customer-minus{
+    margin-top: 10px !important;
+}
+
+.menus_customer-minus:hover {
+    background-color: rgb(231, 10, 58) !important;
+  }
+
+.menus_customer-listDescription{
+    margin-top: 5px !important;
+    margin-right: 100px !important;
+}
+
+.menus_customer-cart{
+    float: right !important;
+     position: fixed !important;
+     right:0 !important;
+     width: 50% !important;
+}
+
+.menus_customer-cartcontent{
+    width: 55% !important;
+}
+
+.menus_customer-cartdash{
+    border-bottom: 1px dashed #bbb !important;
+}
+
+.menus_customer-carttotal{
+    margin-bottom: 10px !important;
+}
+
+.menus_customer-cartproceed{
+    text-align: center !important;
+}
+
+.orders_clerk-checkbox{
+    display: flex !important; margin-left: 60px !important;
+}
+
+.orders_clerk-button{
+    margin-left: 50px !important;
+}
+
+.users_clerk-heading{
+    font-family: 'Armata'
+}
+
+.users_clerk-removeclerk{
+    margin-top: 25px !important;
+}
+
+.menu_items-updatetag{
+    margin-top: 35px !important;
+}
+
+.orders_admin-table{
+    list-style-type: none !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.flexing{
+    display: flex !important;
+}

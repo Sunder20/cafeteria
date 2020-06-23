@@ -13,14 +13,14 @@
     <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Nixie One' rel='stylesheet'>
   </head>
-  <body style="width: 50%;">
+  <body class="menus_customer-cartcontent">
     <main class="main">
-      <h1 type="button" class="collapsible" style="font-family: 'Armata'">
+      <h1 type="button" class="collapsible users_clerk-heading">
         Clerks
       </h1>
       <div class="menus">
         <% User.clerk.each do |clerk| %>
-          <div style="display: flex;">
+          <div class="flexing">
             <p class="menu_list">
               <%= clerk.name %>
             </p>
@@ -29,11 +29,11 @@
             </p>
             <%= link_to "Remove Clerk" ,
               user_path(id: clerk.id) , method: :put ,
-              :class => "menu_list",
-              :style => 'margin-top: 25px;'
+              :class => "menu_list users_clerk-removeclerk",
+              :onclick => "return confirm('Confirm remove clerk?');"
             %>
             <%= form_with(url: "/users/#{clerk.id}" ,method: "delete") do %>
-              <button class="btn">
+              <button class="btn" onclick="return confirm('Are you sure you want to delete?');">
                 <i class="fa fa-trash">
                 </i>
               </button>
@@ -41,12 +41,12 @@
           </div>
         <% end %>
       </div>
-      <h1 type="button" class="collapsible" style=" font-family: 'Armata'">
+      <h1 type="button" class="collapsible users_clerk-heading">
         Customers
       </h1>
       <div class="menus">
         <% User.customer.each do |customer| %>
-          <div style="display: flex;">
+          <div class="flexing">
             <p class="menu_list">
               <%= customer.name %>
             </p>
@@ -56,11 +56,11 @@
             <%= link_to "Make Clerk" ,
                 user_path(id: customer.id) ,
               method: :put ,
-              :class => "menu_list",
-              :style => 'margin-top: 25px;'
+              :class => "menu_list users_clerk-removeclerk",
+              :onclick => "return confirm('Confirm make clerk');"
             %>
             <%= form_with(url: "/users/#{customer.id}" ,method: "delete") do %>
-              <button class="btn"><i class="fa fa-trash"></i></button>
+              <button class="btn" , onclick="return confirm('Are you sure you want to delete?');"><i class="fa fa-trash"></i></button>
             <% end %>
           </div>
         <% end %>
@@ -68,104 +68,5 @@
     </main>
     <div class="zag slide">
     </div>
-    <div id="id02" class="modal">
-      <%= form_with url: "/users?role=clerk" , method: "post" ,class: "modal-content", style: "border-radius: 8px;"  do %>
-        <div class="logincontainer">
-          <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;
-          </span>
-          <h1>
-            Create clerk
-          </h1>
-          <p>
-            Please fill in this form to create an account.
-          </p>
-          <hr>
-          <label for="name">
-            <b>Name</b>
-          </label>
-          <%= text_field_tag 'name',
-            nil,
-            placeholder: "Enter Name",
-            class: "login",
-            :required => true
-          %>
-          <label for="email">
-            <b>Email</b>
-          </label>
-          <%= text_field_tag 'email',
-            nil,
-            placeholder: "Enter Email",
-            class: "login",
-            :required => true
-          %>
-          <label for="psw">
-            <b>Password</b>
-          </label>
-          <%= password_field_tag 'password',
-            nil,
-            placeholder: "Enter Password",
-            id: "password",
-            :required => true
-          %>
-          <label for="psw-repeat">
-            <b>Repeat Password</b>
-          </label>
-          <%= password_field_tag nil,
-              nil,
-              placeholder: "Repeat password",
-              id: "confirm_password",
-              :required => true
-          %>
-          <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-          </label>
-          <div class="clearfix">
-            <%= button_tag "Create" , class: "button", style: "text-align: center; height: 30px;" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <script>
-      // Get the modal
-      var modal = document.getElementById('id02');
-      
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-    </script>
-    <script>
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
-      
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
-      }
-    </script>
-    <script>
-      var password = document.getElementById("password")
-      , confirm_password = document.getElementById("confirm_password");
-      
-      function validatePassword(){
-        if(password.value != confirm_password.value) {
-          confirm_password.setCustomValidity("Passwords Don't Match");
-        }
-        else {
-          confirm_password.setCustomValidity('');
-        }
-      }
-      password.onchange = validatePassword;
-      confirm_password.onkeyup = validatePassword;
-    </script>
   </body>
 </html>

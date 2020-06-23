@@ -16,10 +16,6 @@ class Order < ApplicationRecord
     all.where(user_id: user.id)
   end
 
-  def self.of_user(user)
-    all.where(user_id: user.id)
-  end
-
   def self.unconfirmed
     all.where(status: "unconfirmed")
   end
@@ -50,9 +46,5 @@ class Order < ApplicationRecord
 
   def delivered?
     status == "delivered"
-  end
-
-  def self.today
-    all.where(updated_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
   end
 end

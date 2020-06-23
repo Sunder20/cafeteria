@@ -45,28 +45,28 @@
         </div>
       </div>
       <div id="wrapper" class="slide">
-        <div class="content cf" style = "width: 520px;" >
-          <ol style="margin-bottom: 0;">
+        <div class="content cf menus_customer-content" >
+          <ol class="menus_customer-contentOl">
             <li>
               <article class="box">
-                <% if @order.confirmed? %>
-                  <h5 style="margin-bottom: 10px;align: right;">
-                    Order placed at: <strong><%= @order.updated_at %></strong>
-                  </h5>
-                  <h5 style="margin-bottom: 10px;align: right;">
+                <% if @order.delivered? %>
+                  <h6>Order placed at: <strong><%= @order.placed_at %></strong></h6>
+                  <h6>Delivered at: <strong><%= @order.delivered_at %></strong></h6>
+                <% else %>
+                  <h6>
+                    Order placed at: <strong><%= @order.placed_at %></strong>
+                  </h6>
+                  <h6>
                     Yet to be delivered
-                  </h5>
-                <% elsif @order.delivered? %>
-                  <h5 style="margin-bottom: 10px;align: right;">Order placed at: <strong><%= $a %></strong></h5>
-                  <h5 style="margin-bottom: 10px;align: right;">Delivered at: <strong><%= @order.updated_at %></strong></h5>
+                  </h6>
                 <% end %>
                 <h1 class="heading">Bill</h1>
-                <div style="border-bottom: 1px dashed #bbb;">
-                  <table style="width: 100%;" border="0">
+                <div class="menus_customer-cartdash">
+                  <table class="menus_customer-list">
                     <tbody>
                       <tr>
                         <% @orderitems.all.each do |item| %>
-                          <table style="width: 100%;" border="0">
+                          <table class="menus_customer-list" border="0">
                             <td> <strong><%= item.menu_item_name %></strong> </td>
                             <td align="right">
                               <strong> No:  <%= item.quantity %></strong>
@@ -80,7 +80,7 @@
                     </tbody>
                   </table>
                 </div>
-                <h4 style="margin-bottom: 10px;align: right;">Total:<strong> &#x20B9;  <%= Order.get_sum(@order) %></strong>
+                <h4 class="menus_customer-carttotal">Total:<strong> &#x20B9;  <%= Order.get_sum(@order) %></strong>
                 </h4>
               </article>
             </li>

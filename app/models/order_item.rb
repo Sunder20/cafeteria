@@ -2,10 +2,6 @@ class OrderItem < ApplicationRecord
   belongs_to :menu_item
   belongs_to :order
 
-  def self.of_user(user)
-    all.where(user_id: user.id)
-  end
-
   def self.get_price(item)
     item.menu_item_price.to_i * item.quantity.to_i
   end

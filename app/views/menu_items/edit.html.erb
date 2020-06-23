@@ -14,26 +14,26 @@
     <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">
   </head>
-  <body class="content" style="opacity: 0.95;width: 50%">
+  <body class="content menu_items-content">
     <main class="main">
       <%= form_with(url: "/menu_items/#{@item.id}", method: "put") do %>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Name:</p>
-          <%= text_field_tag 'name', nil, placeholder: "#{@item.name}", class: "AddMenu-txt", style: "width: 50%; margin-left: 70px;" %>
+          <%= text_field_tag 'name', nil, placeholder: "#{@item.name}", class: "AddMenu-txt", class: "AddMenu-txt menu_items-formName" %>
         </div>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Price:</p>
-          <%= text_field_tag 'price', nil, placeholder: "#{@item.price}", class: "AddMenu-txt", style: "width: 50%; margin-left: 75px;" %>
+          <%= text_field_tag 'price', nil, placeholder: "#{@item.price}", class: "AddMenu-txt", class: "AddMenu-txt menu_items-formPrice" %>
         </div>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Description:</p>
-          <%= text_area_tag 'description', nil, rows: 10 ,cols: 50, placeholder: "#{@item.description}", class: "AddMenu-txt", style: "margin-top: 10px; margin-left: 20px;" %>
+          <%= text_area_tag 'description', nil, rows: 10 ,cols: 50, placeholder: "#{@item.description}", class: "AddMenu-txt", class: "AddMenu-txt menu_items-formDescription" %>
         </div>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Image:</p>
-          <%= text_field_tag 'image_id', nil, placeholder: 'Image URL', class: "AddMenu-txt", style: "width: 50%;margin-left: 62px;" %>
+          <%= text_field_tag 'image_id', nil, placeholder: 'Image URL', class: "AddMenu-txt", class: "AddMenu-txt menu_items-formImage" %>
         </div>
-        <%= button_tag "Update" , class: "AddMenu-button" , style: "background-color: brown; border: 1px solid brown", :onclick => "return confirm('Are you sure you want to update?');"%>
+        <%= button_tag "Update" , class: "AddMenu-button menu_items-Update menu_items-update-margin", :onclick => "return confirm('Are you sure you want to update?');"%>
       <%end%>
     </main>
   </body>

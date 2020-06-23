@@ -29,7 +29,6 @@ class MenuItemsController < ApplicationController
   def new
     id = params[:id]
     @menu = Menu.find(id)
-    new_item = MenuItem.new()
   end
 
   def update

@@ -28,18 +28,24 @@
             <li>
               <a class="try" href="#">About</a>
             </li>
-            <% if @current_user.clerk?%>
-              <li>
-                <a class="try" href="/menus?walkin=true">Menu</a>
-              </li>
-            <% else %>
+            <% if @current_user.customer?%>
               <li>
                 <a class="try" href="/menus">Menu</a>
               </li>
+            <% else %>
+              <li>
+                <a class="try" href="/menus?walkin=true">Menu</a>
+              </li>
             <% end %>
-            <li>
-              <a class="try" href="/users">Your Orders</a>
-            </li>
+            <% if @current_user.customer?%>
+              <li>
+                <a class="try" href="/users">Your Orders</a>
+              </li>
+            <% else %>
+              <li>
+                <a class="try" href="/users?walkin=true">Your Orders</a>
+              </li>
+            <% end %>
             <li>
               <a class="try" href="#">Get Here</a>
             </li>
@@ -48,30 +54,30 @@
         <div class="zag slide"></div>
       </div>
       <div id="wrapper" class="slide">
-        <div class="content cf" style="width: 520px;">
-          <ol style="margin-bottom: 0;">
+        <div class="content cf menus_customer-content">
+          <ol class="menus_customer-contentOl">
             <li>
               <article class="box">
                 <h1 class="heading">Eat</h1>
-                <% MenuItem.where(menu_id: Menu.active.id).each do |item| %>
-                  <table style="width: 100%;" border="0">
+                <% MenuItem.order("name ASC").where(menu_id: Menu.active.id).each do |item| %>
+                  <table class="menus_customer-list" border="0">
                     <tbody>
                       <tr>
-                        <td style="padding-bottom: 10px">
-                          <div style="display: flex;">
-                            <div>
-                              <div style="display: flex;">
+                        <td class="menus_customer-listtd">
+                          <div class="flexing">
+                            <div class="menus_customer-image">
+                              <div class="flexing">
                                 <strong><%= item.name %></strong>
                                 <%= form_with(url: "/order_items?id=#{item.id}&order_id=#{@order.id}" , method: "post") do %>
-                                  <button class="btn" style="margin-top: 10px"><i class="fa fa-plus"></i></button>
+                                  <button class="btn menus_customer-plus" ><i class="fa fa-plus"></i></button>
                                 <% end %>
                                 <%= form_with(url: "/order_items/#{item.id}?order_id=#{@order.id}", method: "put") do %>
-                                  <button class="btn" style="margin-top: 10px"><i class="fa fa-minus"></i></button>
+                                  <button class="btn menus_customer-minus" ><i class="fa fa-minus"></i></button>
                                 <% end %>
                               </div>
-                              <p style="margin-top: 5px; margin-right: 100px"><%= item.description %> </p>
+                              <p class="menus_customer-listDescription"><%= item.description %> </p>
                             </div>
-                            <img src="<%= item.image_id %>" width=50% height="100" border-radius="5px">
+                            <img src="<%= item.image_id %>" width="122px" height="115px">
                           </div>
                         </td>
                         <td align="right">
@@ -87,24 +93,24 @@
           <div class="big zag"></div>
         </div>
       </div>
-      <div id="wrapper" class="slide" style="float: right; position: fixed; right:0; width: 50%;">
-        <div class="content cf" style="width: 55%;">
-          <ol style="margin-bottom: 0;">
+      <div id="wrapper" class="slide menus_customer-cart">
+        <div class="content cf menus_customer-cartcontent">
+          <ol class="menus_customer-contentOl">
             <li>
               <article class="box">
                 <%= link_to "Clear" , "/orders/#{@order.id}", method: :delete %>
                 <h1 class="heading">Cart</h1>
-                <div style="border-bottom: 1px dashed #bbb;">
+                <div class="menus_customer-cartdash">
                   <% @orderitems.all.each do |item| %>
-                    <table style="width: 100%;" border="0">
+                    <table class="menu_items-itemlist" border="0">
                       <td> <strong><%= item.menu_item_name %></strong> </td>
                       <td align="right">
                         <strong> No:  <%= item.quantity %></strong>
                       </td>
-                      <td align="right">
+                      <td align="right" style="width: 30%;">
                         <strong> &#x20B9; <%= OrderItem.get_price(item) %></strong>
                       </td>
-                      <td align="right">
+                      <td align="right" style="width: 10%;">
                         <%= form_with(url: "/order_items/#{item.id}", method: "delete") do %>
                           <a class="delete" href="javascript:void(0)">
                             <input type="image" src="delete-outline.jpg">
@@ -114,11 +120,15 @@
                     </table>
                   <% end %>
                 </div>
-                <h4 style="margin-bottom: 10px;">Total:<strong> &#x20B9; <%= Order.get_sum(@order) %></strong></h4>
-                <a class="try" href="<%= edit_order_path(id: @order.id)  %>" style="text-align: center;">Proceed</a>
+                <div class="flexing">
+                  <h5 class="menus_customer-carttotal"><strong>Total:</strong></h4>
+                  <h4 class="menus_customer-cartprice"><strong> &#x20B9; <%= Order.get_sum(@order) %></strong></h4>
+                </div>
+                <a class="try menus_customer-cartproceed" href="<%= edit_order_path(id: @order.id)  %>" >Proceed</a>
               </article>
             </li>
           </ol>
+          <div class="big zag"></div>
         </div>
       </div>
     </div>

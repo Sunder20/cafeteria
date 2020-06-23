@@ -13,27 +13,27 @@
     <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">
   </head>
-  <body class="content" style="opacity: 0.95;">
+  <body class="content menu_items-content">
     <main class="main">
       <h1 class="Menupage-title"><%= @menu.name %></h1>
       <%= form_with(url: "/menu_items?id=#{@menu.id}", method: "post") do %>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Name:</p>
           <%= text_field_tag 'name', nil, placeholder: "Enter Name", class: "AddMenu-txt", style: "width: 50%; margin-left: 70px;" %>
         </div>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Price:</p>
           <%= text_field_tag 'price', nil, placeholder: "Enter Price", class: "AddMenu-txt", style: "width: 50%; margin-left: 75px;" %>
         </div>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Description:</p>
           <%= text_area_tag 'description', nil, rows: 10 ,cols: 50, placeholder: "Enter Description", class: "AddMenu-txt", style: "margin-top: 10px; margin-left: 20px;" %>
         </div>
-        <div style="display: flex;">
+        <div class="menu_items-form">
           <p>Image:</p>
           <%= text_field_tag 'image_id', nil, placeholder: 'Enter Image URL', class: "AddMenu-txt", style: "width: 50%;margin-left: 62px;" %>
         </div>
-        <%= button_tag "Add" , class: "AddMenu-button" %>
+        <%= button_tag "Add" , class: "AddMenu-button menu_items-button-margin" %>
       <% end %>
     </main>
   </body>

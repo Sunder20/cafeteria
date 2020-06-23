@@ -12,21 +12,21 @@
     <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">
   </head>
-  <body style="width: 70%;">
+  <body class="order_clerk-body">
     <main class="main">
-      <div style="display: flex;  ">
-        <div style="margin-right: 40px;">
-          <h3 class="Menupage-title" style="text-align: center;">Pending Orders</h3>
+      <div class="flexing">
+        <div class="order_clerk-margin">
+          <h3 class="Menupage-title order_customer-title" >Pending Orders</h3>
           <div class="menus">
             <div class="order-item">
               <ul>
                 <% Order.confirmed.all.each do |order|%>
                   <li>
                     <label class='MyMenuItem-Container'>
-                      <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
+                      <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list menus_customer-list">
                         <p><%= order.id %>&nbsp; &nbsp; &nbsp; &nbsp; <%= User.find(order.user_id).name %></p>
                       </a>
-                      <%= link_to "Ready", "/orders/#{order.id}", method: :put , :class => "AddMenu-button" , :style => "display: flex; margin-left: 60px;" %>
+                      <%= link_to "Ready", "/orders/#{order.id}", method: :put , :class => "AddMenu-button orders_clerk-checkbox"  %>
                     </label>
                   </li>
                 <% end %>
@@ -42,10 +42,10 @@
                 <% Order.ready.all.each do |order|%>
                   <li>
                     <label class='MyMenuItem-Container'>
-                      <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
+                      <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list menus_customer-list" >
                         <p><%= order.id %>&nbsp; &nbsp; &nbsp; &nbsp; <%= User.find(order.user_id).name %></p>
                       </a>
-                      <%= link_to "Delivered", "/orders/#{order.id}", method: :put , :class => "AddMenu-button" , :style => " margin-left: 50px;" %>
+                      <%= link_to "Delivered", "/orders/#{order.id}", method: :put , :class => "AddMenu-button orders_clerk-button" %>
                     </label>
                   </li>
                 <% end %>

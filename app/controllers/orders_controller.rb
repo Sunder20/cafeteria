@@ -51,39 +51,12 @@ class OrdersController < ApplicationController
   def update
     id = params[:id]
     order = Order.find(id)
-    # if order.user_id == 2
-    #   if params[:walkin]
-    #     if order.confirmed?
-    #       order.status = "ready"
-    #     elsif order.ready?
-    #       order.status = "delivered"
-    #     end
-    #     order.save
-    #     if @current_user.clerk?
-    #       redirect_to orders_path
-    #     elsif @current_user.admin?
-    #       redirect_to orders_path(:admin => true)
-    #     end
-    #   else
-    #     if order.unconfirmed?
-    #       order.status = "confirmed"
-
-    #       order.save
-    #       flash[:success] = " Order confirmed"
-    #       if @current_user.clerk?
-    #         redirect_to orders_path
-    #       elsif @current_user.admin?
-    #         redirect_to orders_path(:admin => true)
-    #       end
-    #     end
-    #   end
-    # else
     if @current_user.customer?
       if order.user_id == @current_user.id && order.unconfirmed?
-        order.status = "confirmed"
-
+        order.update(status: "confirmed")
+        order.placed_at = order.updated_at
         order.save
-        flash[:success] = " Order confirmed. Continue shoping "
+        flash[:success] = " Order confirmed. Continue shopping "
         redirect_to menus_path
       else
         flash[:error] = " Bad Parameters"
@@ -91,8 +64,8 @@ class OrdersController < ApplicationController
     else
       if params[:walkin]
         if order.user_id == @current_user.id && order.unconfirmed?
-          order.status = "confirmed"
-          order.user_id = 2
+          order.update(status: "confirmed", user_id: 2)
+          order.placed_at = order.updated_at
           order.save
           flash[:success] = " Order confirmed "
           redirect_to orders_path
@@ -101,7 +74,8 @@ class OrdersController < ApplicationController
         end
       else
         if order.ready?
-          order.status = "delivered"
+          order.update(status: "delivered")
+          order.delivered_at = order.updated_at
         elsif order.confirmed?
           order.status = "ready"
         end

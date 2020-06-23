@@ -12,7 +12,7 @@
     <!--<link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="text/css" href="menu.css">-->
   </head>
-  <body style="width: 50%;">
+  <body class="menus_customer-cartcontent">
     <main class="main">
       <h1 class="Menupage-title">Reports</h1>
       <%= form_with(url: orders_path , method: :get, local: true, class: "Add-Menu") do%>
@@ -22,24 +22,24 @@
         <%= hidden_field_tag 'admin' , value = true %>
         <%= submit_tag("Go") %>
       <% end %>
-      <ul style="list-style-type: none;">
+      <ul class="orders_admin-table">
         <%= label_tag "Count"%>
         <%= @order.count %>
         <% @order.each do |order|%>
           <li>
             <label class='MyMenuItem-Container'>
-              <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list", style="width: 100%;">
-                <table style="width: 100%;" border="0">
+              <a   href="<%= order_path(id: "#{order.id}")  %>" , class="menu_list menus_customer-list">
+                <table class="menus_customer-list" border="0">
                   <td align="left">
                     <p><%= order.id %></p>
                   </td>
                   <td align="center">
                     <p> <%= User.find(order.user_id).name %></p>
                   </td>
-                  <td>
+                  <td align="right">
                     <p><%= User.find(order.user_id).email %></p>
                   </td>
-                  <td>
+                  <td align="right">
                     <p><%= order.updated_at.to_date %></p>
                   </td>
                 </table>
