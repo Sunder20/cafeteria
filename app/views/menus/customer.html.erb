@@ -22,19 +22,13 @@
             <img class="logo side" src="http://www.twentyandsix.com.au/wp-content/themes/twentyandsix/img/logo@2x.png">
           </a>
           <ul class="navi">
-            <li>
-              <a class="try" href="/">Home</a>
-            </li>
-            <li>
-              <a class="try" href="#">About</a>
-            </li>
             <% if @current_user.customer?%>
               <li>
-                <a class="try" href="/menus">Menu</a>
+                <a class="try" href="/menus">Home</a>
               </li>
             <% else %>
               <li>
-                <a class="try" href="/menus?walkin=true">Menu</a>
+                <a class="try" href="/menus?walkin=true">Home</a>
               </li>
             <% end %>
             <% if @current_user.customer?%>
@@ -46,6 +40,9 @@
                 <a class="try" href="/users?walkin=true">Your Orders</a>
               </li>
             <% end %>
+            <li>
+              <a class="try" href="#">About</a>
+            </li>
             <li>
               <a class="try" href="#">Get Here</a>
             </li>

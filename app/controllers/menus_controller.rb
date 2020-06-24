@@ -87,6 +87,8 @@ class MenusController < ApplicationController
       else
         flash[:error] = "One active menu is needed"
       end
+    else
+      menu.destroy
     end
     redirect_to menus_path
   end
