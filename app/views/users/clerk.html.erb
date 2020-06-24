@@ -29,15 +29,9 @@
             </p>
             <%= link_to "Remove Clerk" ,
               user_path(id: clerk.id) , method: :put ,
-              :class => "menu_list users_clerk-removeclerk",
+              :class => "menu_list users_clerk-removeclerk order_clerk-title",
               :onclick => "return confirm('Confirm remove clerk?');"
             %>
-            <%= form_with(url: "/users/#{clerk.id}" ,method: "delete") do %>
-              <button class="btn" onclick="return confirm('Are you sure you want to delete?');">
-                <i class="fa fa-trash">
-                </i>
-              </button>
-            <% end %>
           </div>
         <% end %>
       </div>
@@ -54,14 +48,11 @@
               <%= customer.email %>
             </p>
             <%= link_to "Make Clerk" ,
-                user_path(id: customer.id) ,
+              user_path(id: customer.id) ,
               method: :put ,
-              :class => "menu_list users_clerk-removeclerk",
+              :class => "menu_list users_clerk-removeclerk order_clerk-title",
               :onclick => "return confirm('Confirm make clerk');"
             %>
-            <%= form_with(url: "/users/#{customer.id}" ,method: "delete") do %>
-              <button class="btn" , onclick="return confirm('Are you sure you want to delete?');"><i class="fa fa-trash"></i></button>
-            <% end %>
           </div>
         <% end %>
       </div>
